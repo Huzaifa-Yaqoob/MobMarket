@@ -4,7 +4,7 @@ import ProductsRoom from "@/components/product/ProductsRoom";
 
 export default function LandingPage() {
   return (
-    <main className="my-4 px-4 md:px-12">
+    <main className="my-container">
       <ProductsRoom />
     </main>
   );

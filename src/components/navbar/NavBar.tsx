@@ -7,8 +7,8 @@ const links: Link[] = [{ name: "Home", href: "/" }];
 
 export default function NavBar() {
   return (
-    <nav className="flex justify-between items-center py-2 px-4 md:px-12 top-0 sticky shadow">
-      <div className=" text-blue-500">
+    <nav className="flex justify-between items-center my-container top-0 sticky shadow">
+      <div className="text-primary">
         <Link href={"/"} className="flex items-center gap-2">
           <Image src={"Logo.svg"} alt="Logo" width={36} height={36} />
           <strong>MobMarket</strong>
