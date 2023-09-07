@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
-import { Button } from "../ui/button";
-
-const links: Link[] = [{ name: "Home", href: "/" }];
+import RegisterModal from "./RegisterModal";
+import ThemeModeToggler from "./ThemeModeToggler";
 
 export default function NavBar() {
   return (
@@ -14,9 +13,10 @@ export default function NavBar() {
           <strong>MobMarket</strong>
         </Link>
       </div>
-      <div className=" text-lg space-x-16">
-        <NavLinks links={links} />
-        <Button>Log In</Button>
+      <div className="flex justify-center items-center space-x-4">
+        <ThemeModeToggler />
+        <NavLinks />
+        <RegisterModal />
       </div>
     </nav>
   );

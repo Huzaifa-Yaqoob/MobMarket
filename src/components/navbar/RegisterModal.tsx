@@ -1,0 +1,27 @@
+// "use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+
+export default function RegisterModal() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Log In</Button>
+      </DialogTrigger>
+      <DialogContent className="text-danger">
+        <DialogHeader className="text-lg text-primary">
+          Welcome To MobMarket
+        </DialogHeader>
+      </DialogContent>
+    </Dialog>
+  );
+}

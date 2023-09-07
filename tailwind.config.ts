@@ -22,7 +22,7 @@ module.exports = {
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        error: "hsl(var(--error))",
+        danger: "hsl(var(--danger))",
         warning: "hsl(var(--warning))",
         success: "hsl(var(--success))",
         info: "hsl(var(--info))",

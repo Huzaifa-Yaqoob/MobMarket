@@ -33,10 +33,10 @@
 
     --ring: 250 87% 15%;
 
-    --error: 0 85;
-    --warning: 0;
-    --success: 0;
-    --info: 0;
+    --danger: 0 100% 50%;
+    --warning: 60 100% 50%;
+    --success: 120 100%, 50%;
+    --info: 210 100% 50%;
 
     --radius: 0.5rem;
   }
@@ -83,4 +83,42 @@
   .my-container {
     @apply py-2 px-4 md:px-12 2xl:px-16;
   }
+}
+
+/* Scrollbar design */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--accent)) transparent;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+*::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: hsl(var(--accent));
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(var(--accent));
+}
+
+*::-webkit-scrollbar-thumb:active {
+  background-color: hsl(var(--accent));
 }
