@@ -12,7 +12,7 @@ import {
 export default function CartModal() {
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center space-x-2 w-full text-danger">
+      <DialogTrigger className="flex items-center space-x-2 w-full text-primary">
         <ShoppingCart />
         <span>Cart</span>
       </DialogTrigger>

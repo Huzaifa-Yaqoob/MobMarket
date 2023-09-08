@@ -18,13 +18,13 @@ export default function BrandItem({ brands }: { brands: SelectItem[] }) {
   const pathName = usePathname();
 
   return (
-    <Command className="max-h-72">
+    <Command className="h-full">
       <CommandInput placeholder="Search..." />
       <CommandList>
         <CommandEmpty>Sorry we don`t have that brand</CommandEmpty>
         <CommandGroup heading="Brands" className="space-y-2">
           {brands.map((brand) => (
-            <Link href={`/${brand.id}`}>
+            <Link href={`/${brand.id}`} key={brand.id}>
               <CommandItem
                 className={
                   pathName.includes(brand.name)

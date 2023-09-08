@@ -14,7 +14,7 @@ import {
 export default function RegisterModal() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger asChild className="text-primary">
         <Button variant="outline">Log In</Button>
       </DialogTrigger>
       <DialogContent className="text-danger">

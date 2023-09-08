@@ -7,7 +7,7 @@ export default function AdminIcon() {
   const pathName = usePathname();
   return (
     <Link href="/admin">
-      <div className="w-full flex items-center justify-between text-royal ">
+      <div className="w-full flex items-center space-x-2 text-royal ">
         <Crown
           fill={pathName === "/admin" ? "hsl(var(--royal))" : "transparent"}
         />

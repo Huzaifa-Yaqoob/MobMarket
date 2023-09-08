@@ -1,4 +1,4 @@
-import { Crown } from "lucide-react";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import {
   Popover,
@@ -16,7 +16,7 @@ export default function ProfilePopover() {
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Avatar>
+        <Avatar className="cursor-pointer">
           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
           <AvatarFallback>MM</AvatarFallback>
         </Avatar>
@@ -29,6 +29,13 @@ export default function ProfilePopover() {
           <CartModal />
           <OrderModal />
         </div>
+        <Separator />
+        <Link href="/admin">
+          <div className="w-full flex items-center space-x-2 text-danger">
+            <LogOut />
+            <span>Log Out</span>
+          </div>
+        </Link>
       </PopoverContent>
     </Popover>
   );

@@ -4,6 +4,25 @@ import NavLinks from "./NavLinks";
 import RegisterModal from "./RegisterModal";
 import ProfilePopover from "./ProfilePopover";
 import ThemeModeToggler from "./ThemeModeToggler";
+import NavSheet from "./NavSheet";
+
+const links: Link[] = [
+  { name: "Home", href: "/" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+];
+
+const brands: SelectItem[] = [
+  { id: "abc", name: "Oppo", value: "" },
+  { id: "abc", name: "Vivo", value: "" },
+  { id: "abc", name: "Samsung", value: "" },
+  { id: "abc", name: "Xiomi", value: "" },
+  { id: "abc", name: "Iphone", value: "" },
+  { id: "abc", name: "Realme", value: "" },
+  { id: "abc", name: "Realme", value: "" },
+  { id: "abc", name: "Realme", value: "" },
+  { id: "abc", name: "Realme", value: "" },
+];
 
 export default function NavBar() {
   return (
@@ -14,9 +33,12 @@ export default function NavBar() {
           <strong>MobMarket</strong>
         </Link>
       </div>
-      <div className="flex justify-center items-center space-x-4">
+      <div className="flex justify-center items-center space-x-1 md:space-x-4">
         <ThemeModeToggler />
-        <NavLinks />
+        <NavLinks links={links} brands={brands} />
+        <div className="md:hidden">
+          <NavSheet links={links} brands={brands} />
+        </div>
         <ProfilePopover />
         {/* <RegisterModal /> */}
       </div>

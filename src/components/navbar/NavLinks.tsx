@@ -5,32 +5,21 @@ import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
-  NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import BrandItem from "./BrandItem";
 import LinkItem from "./LinkItem";
 
-const brands: SelectItem[] = [
-  { id: "abc", name: "Oppo", value: "" },
-  { id: "abc", name: "Vivo", value: "" },
-  { id: "abc", name: "Samsung", value: "" },
-  { id: "abc", name: "Xiomi", value: "" },
-  { id: "abc", name: "Iphone", value: "" },
-  { id: "abc", name: "Realme", value: "" },
-];
-
-const links: Link[] = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
-];
-
-export default function NavLinks() {
+export default function NavLinks({
+  links,
+  brands,
+}: {
+  links: Link[];
+  brands: SelectItem[];
+}) {
   return (
-    <NavigationMenu>
+    <NavigationMenu className="hidden md:block">
       <NavigationMenuList className="space-x-4">
         <NavigationMenuItem>
           <NavigationMenuTrigger>Brands</NavigationMenuTrigger>
