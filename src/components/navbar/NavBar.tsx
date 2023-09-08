@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./NavLinks";
 import RegisterModal from "./RegisterModal";
+import ProfilePopover from "./ProfilePopover";
 import ThemeModeToggler from "./ThemeModeToggler";
 
 export default function NavBar() {
@@ -16,7 +17,8 @@ export default function NavBar() {
       <div className="flex justify-center items-center space-x-4">
         <ThemeModeToggler />
         <NavLinks />
-        <RegisterModal />
+        <ProfilePopover />
+        {/* <RegisterModal /> */}
       </div>
     </nav>
   );

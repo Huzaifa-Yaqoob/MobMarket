@@ -26,6 +26,7 @@ module.exports = {
         warning: "hsl(var(--warning))",
         success: "hsl(var(--success))",
         info: "hsl(var(--info))",
+        royal: "hsl(var(--royal))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
