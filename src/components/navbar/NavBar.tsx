@@ -26,7 +26,7 @@ const brands: SelectItem[] = [
 
 export default function NavBar() {
   return (
-    <nav className="flex justify-between items-center my-container top-0 sticky shadow">
+    <nav className="flex justify-between items-center bg-background my-container top-0 sticky shadow z-10">
       <div className="text-primary">
         <Link href={"/"} className="flex items-center gap-2">
           <Image src={"Logo.svg"} alt="Logo" width={36} height={36} />
