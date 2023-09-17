@@ -17,7 +17,7 @@ export default function RegisterModal() {
       <DialogTrigger asChild className="text-primary">
         <Button variant="outline">Log In</Button>
       </DialogTrigger>
-      <DialogContent className="text-danger">
+      <DialogContent className="">
         <DialogHeader className="text-lg text-primary">
           Welcome To MobMarket
         </DialogHeader>

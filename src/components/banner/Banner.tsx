@@ -1,6 +1,5 @@
 "use client";
 import {
-  Navigation,
   Pagination,
   Autoplay,
   A11y,
@@ -11,7 +10,6 @@ import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 
@@ -21,10 +19,9 @@ import { AspectRatio } from "@/components/ui/aspect-ratio";
 export default function Banner() {
   return (
     <Swiper
-      modules={[Pagination, A11y, Autoplay, Keyboard, Mousewheel]}
+      modules={[Pagination, A11y, Autoplay, Keyboard]}
       loop={true}
       grabCursor={true}
-      mousewheel={true}
       pagination={{ clickable: true }}
       autoplay={{
         delay: 5000,
@@ -35,12 +32,12 @@ export default function Banner() {
       }}
     >
       <SwiperSlide>
-        <AspectRatio ratio={16 / 5} className="bg-muted">
+        <AspectRatio ratio={16 / 7} className="bg-muted">
           <Image
             src="/design.png"
             alt="Photo by Drew Beamer"
             fill
-            className="object-cover"
+            className="object-cover rounded"
           />
         </AspectRatio>
       </SwiperSlide>

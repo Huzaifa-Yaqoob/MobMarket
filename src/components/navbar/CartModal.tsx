@@ -12,11 +12,10 @@ import {
 export default function CartModal() {
   return (
     <Dialog>
-      <DialogTrigger className="flex items-center space-x-2 w-full text-primary">
+      <DialogTrigger>
         <ShoppingCart />
-        <span>Cart</span>
       </DialogTrigger>
-      <DialogContent className="text-danger">
+      <DialogContent className="">
         <DialogHeader className="text-lg text-primary">
           Welcome To MobMarket
         </DialogHeader>

@@ -1,48 +1,43 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { Star, Info } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Star } from "lucide-react";
 import {
   Card as ShadcnCard,
-  CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 import AddToCard from "./AddToCard";
 import HoverInfoCard from "./HoverInfoCard";
+import SaleView from "./SaleView";
+import CardContent from "./CardContent";
 
-export default function Card() {
+export default function Card({
+  cardContent,
+  size,
+}: {
+  cardContent: CardContent;
+  size: string;
+}) {
   return (
-    <ShadcnCard className="rounded flex flex-col items-center shadow min-w-fit">
+    <ShadcnCard className={`rounded flex flex-col items-center shadow ${size}`}>
       <Link href="/" className="flex flex-col items-center mt-2">
         <Image
-          src="/products/Apple-iPhone-11-PNG-Image.png"
-          alt="Apple-iPhone-11"
-          width={200}
-          height={200}
+          src={cardContent.imageUrl}
+          alt={cardContent.name}
+          width={150}
+          height={150}
           className="object-cover"
         />
-        <CardHeader className="flex flex-col items-center py-2">
-          <CardTitle className="flex items-end gap-2">
-            Apple iPhone 11 <HoverInfoCard />
+        <CardHeader className="flex flex-col items-center py-0 px-0">
+          <CardTitle className="flex items-end gap-2 text-base">
+            {cardContent.name}
           </CardTitle>
-          <CardDescription className="flex flex-col items-center">
-            <b className="text-success">$1,000</b>
-            <span className="text-danger">
-              Sales ends in <time>10 / 12</time>
-            </span>
-            <span className="flex text-royal">
-              <Star className="mr-2 h-4 w-4" />
-              4.7/5
-            </span>
-            <span className="text-info">In Stock</span>
-          </CardDescription>
         </CardHeader>
+        <CardContent cardContent={cardContent} />
       </Link>
-      <CardFooter className="py-2">
+      <CardFooter className="py-1 px-0">
         <AddToCard />
       </CardFooter>
     </ShadcnCard>

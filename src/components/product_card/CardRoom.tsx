@@ -1,12 +1,23 @@
-import ProductCard from "./Card";
+import Card from "./Card";
 
-export default function CardRoom() {
+export default function CardRoom({
+  cardsContent,
+}: {
+  cardsContent: CardContent[];
+}) {
   return (
-    <section className="grid grid-cols-3 gap-4 my-container bg-red-300">
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
-      <ProductCard />
+    <section className="my-container flex flex-wrap gap-4">
+      {cardsContent?.length === 0 ? (
+        <p>Nothing To Show You Here</p>
+      ) : (
+        cardsContent.map((cardContent) => (
+          <Card
+            key={cardContent.id}
+            cardContent={cardContent}
+            size={"flex-grow"}
+          />
+        ))
+      )}
     </section>
   );
 }

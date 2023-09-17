@@ -24,7 +24,7 @@ export default function BrandItem({ brands }: { brands: SelectItem[] }) {
         <CommandEmpty>Sorry we don`t have that brand</CommandEmpty>
         <CommandGroup heading="Brands" className="space-y-2">
           {brands.map((brand) => (
-            <Link href={`/${brand.id}`} key={brand.id}>
+            <Link href={`/product/${brand.id}`} key={brand.id}>
               <CommandItem
                 className={
                   pathName.includes(brand.name)

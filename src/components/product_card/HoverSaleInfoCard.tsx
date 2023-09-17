@@ -5,19 +5,16 @@ import {
   HoverCardTrigger,
 } from "@/components/ui/hover-card";
 
-export default function HoverInfoCard({ info }: { info: Info }) {
+export default function HoverSaleInfoCard({ sale }: { sale: Sale }) {
   return (
     <HoverCard>
       <HoverCardTrigger asChild>
         <Info className="mr-2 h-4 w-4 text-info" />
       </HoverCardTrigger>
-      <HoverCardContent className="text-xs w-fit font-thin">
-        <ul>
-          <li>Processor: {info.processor}</li>
-          <li>RAM: {info.ram}</li>
-          <li>Storage: {info.storage}</li>
-          <li>Camera: {info.camera}</li>
-        </ul>
+      <HoverCardContent className="text-xs w-fit font-thin flex flex-col">
+        <h3>{sale?.saleName}</h3>
+        <span>Sale ends in {sale?.saleEndTime}</span>
+        <span>75% off</span>
       </HoverCardContent>
     </HoverCard>
   );

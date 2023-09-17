@@ -19,8 +19,8 @@ export default function ThemeModeToggler() {
   };
 
   return (
-    <Button variant={"ghost"} onClick={themeToggler}>
-      {theme === "dark" ? <Moon /> : <Sun />}
-    </Button>
+    <span onClick={themeToggler} className="text-xs">
+      {theme === "dark" ? <Moon size={15} /> : <Sun size={15} />}
+    </span>
   );
 }

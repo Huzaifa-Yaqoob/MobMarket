@@ -12,11 +12,11 @@ import {
 export default function ProfileModal() {
   return (
     <Dialog>
-      <DialogTrigger className="w-full flex items-center space-x-2 text-info">
+      <DialogTrigger className="w-full flex items-center space-x-2">
         <UserSquare2 />
         <span>Profile</span>
       </DialogTrigger>
-      <DialogContent className="text-danger">
+      <DialogContent className="">
         <DialogHeader className="text-lg text-primary">
           Welcome To MobMarket
         </DialogHeader>

@@ -7,7 +7,6 @@ import {
   NavigationMenuLink,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-// import usePa
 
 export default function LinkItem({ links }: { links: Link[] }) {
   const pathname = usePathname();

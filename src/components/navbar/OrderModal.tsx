@@ -12,11 +12,11 @@ import {
 export default function OrderModal() {
   return (
     <Dialog>
-      <DialogTrigger className="w-full flex items-center space-x-2 text-success">
+      <DialogTrigger className="w-full flex items-center space-x-2">
         <ShoppingBasket />
         <span>Orders</span>
       </DialogTrigger>
-      <DialogContent className="text-danger">
+      <DialogContent className="">
         <DialogHeader className="text-lg text-primary">
           Welcome To MobMarket
         </DialogHeader>

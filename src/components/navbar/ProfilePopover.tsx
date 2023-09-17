@@ -22,11 +22,10 @@ export default function ProfilePopover() {
         </Avatar>
       </PopoverTrigger>
       <PopoverContent className="w-fit space-y-2">
-        <AdminIcon />
-        <Separator />
+        {/* <AdminIcon /> */}
+        {/* <Separator /> */}
         <div className="flex flex-col items-center gap-y-2">
           <ProfileModal />
-          <CartModal />
           <OrderModal />
         </div>
         <Separator />
