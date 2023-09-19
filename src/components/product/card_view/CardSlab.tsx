@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Card from "./Card";
+import Card from "../card/Card";
 
 export default function CardSlab({
   cardsContent,

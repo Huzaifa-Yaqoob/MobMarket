@@ -1,7 +1,8 @@
 import { SlidersHorizontal } from "lucide-react";
 import Link from "next/link";
-import CartModal from "./CartModal";
+import CartSheet from "./CartSheet";
 import { SearchBar } from "./SearchBar";
+import FilterSheet from "./FilterSheet";
 
 export default function SecondaryNavbar() {
   return (
@@ -10,10 +11,8 @@ export default function SecondaryNavbar() {
         <SearchBar />
       </div>
       <div className="flex items-center space-x-4 text-lg ">
-        <Link href={"/"}>
-          <SlidersHorizontal />
-        </Link>
-        <CartModal />
+        <FilterSheet />
+        <CartSheet />
       </div>
     </div>
   );

@@ -1,7 +1,4 @@
-import { Star } from "lucide-react";
-import { CardContent as ShadcnCardContent } from "../ui/card";
-import SaleView from "./SaleView";
-import HoverSaleInfoCard from "./HoverSaleInfoCard";
+import { CardContent as ShadcnCardContent } from "../../ui/card";
 
 export default function CardContent({
   cardContent,
@@ -14,7 +11,7 @@ export default function CardContent({
         <span className="text-lg strikethrough">${cardContent.price}</span>
         <span>${cardContent.sale?.salePrice} </span>
       </div>
-      <span className="text-info">{cardContent.status}</span>
+      <span className="text-info text-xs">{cardContent.status}</span>
     </ShadcnCardContent>
   );
 }

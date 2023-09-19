@@ -9,7 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "../ui/separator";
 import ProfileModal from "./ProfileModal";
 import OrderModal from "./OrderModal";
-import CartModal from "./CartModal";
+import CartModal from "./CartSheet";
 import AdminIcon from "./AdminIcon";
 
 export default function ProfilePopover() {
