@@ -3,7 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useState, useEffect } from "react";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 
 export default function ThemeModeToggler() {
   const { theme, setTheme } = useTheme();
@@ -19,7 +19,7 @@ export default function ThemeModeToggler() {
   };
 
   return (
-    <span onClick={themeToggler} className="text-xs">
+    <span onClick={themeToggler} className="text-xs cursor-pointer">
       {theme === "dark" ? <Moon size={15} /> : <Sun size={15} />}
     </span>
   );

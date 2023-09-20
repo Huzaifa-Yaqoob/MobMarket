@@ -1,5 +1,6 @@
 import Image from "next/image";
-import { Delete } from "lucide-react";
+import { Trash2 } from "lucide-react";
+import Link from "next/link";
 
 export default function HorizontalCard({
   cardContent,
@@ -17,7 +18,7 @@ export default function HorizontalCard({
           className="object-cover"
         />
       </div>
-      <div className="w-full">
+      <Link href={"/"} className="w-full">
         <div className="text-primary">
           <h4>{cardContent.name}</h4>
         </div>
@@ -25,9 +26,9 @@ export default function HorizontalCard({
           <span className="strikethrough">${cardContent.price}</span>
           <span>${cardContent.sale?.salePrice} </span>
         </div>
-      </div>
-      <div className="text-danger px-2 cursor-pointer">
-        <Delete />
+      </Link>
+      <div className="hover:text-danger px-2 cursor-pointer">
+        <Trash2 className="mr-2 h-4 w-4" />
       </div>
     </div>
   );

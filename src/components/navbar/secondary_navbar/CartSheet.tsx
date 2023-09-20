@@ -1,5 +1,6 @@
 "use client";
 import { ShoppingCart } from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 import {
   Sheet,
   SheetContent,
@@ -8,23 +9,24 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import CardList from "../product/card_view/CardList";
+import CardList from "../../product/card_view/CardList";
 
 export default function CartSheet() {
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className="cursor-pointer">
         <ShoppingCart />
       </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
+      <SheetContent className="w-fit">
+        <SheetHeader className="mt-4">
           <SheetTitle className="flex gap-4">
             <ShoppingCart /> Your Cart
           </SheetTitle>
           <SheetDescription>
-            Items are not save for permanently here.
+            Items are not save here permanently.
           </SheetDescription>
         </SheetHeader>
+        <Separator className="mt-1 mb-1" />
         <CardList />
       </SheetContent>
     </Sheet>

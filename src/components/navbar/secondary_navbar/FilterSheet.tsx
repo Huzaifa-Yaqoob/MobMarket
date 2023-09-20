@@ -13,11 +13,11 @@ import {
 export default function FilterSheet() {
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className="cursor-pointer">
         <SlidersHorizontal />
       </SheetTrigger>
-      <SheetContent>
-        <SheetHeader>
+      <SheetContent className="w-fit">
+        <SheetHeader className="mt-4">
           <SheetTitle className="flex gap-4">
             <SlidersHorizontal /> Filter Out Your Product:
           </SheetTitle>

@@ -4,7 +4,7 @@ import { PanelRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import BrandAccordion from "./BrandAccordion";
 
 export default function NavSheet({

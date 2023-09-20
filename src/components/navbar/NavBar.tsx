@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import NavLinks from "./NavLinks";
-import RegisterModal from "./RegisterModal";
-import ProfilePopover from "./ProfilePopover";
-import ThemeModeToggler from "./ThemeModeToggler";
-import NavSheet from "./NavSheet";
-import SecondaryNavbar from "./SecondaryNavbar";
+import NavLinks from "./p_nav_components/NavLinks";
+import RegisterModal from "./forms/RegisterModal";
+import Profile from "./p_nav_components/Profile";
+import ThemeModeToggler from "./p_nav_components/ThemeModeToggler";
+import NavSheet from "./p_nav_components/NavSheet";
+import SecondaryNavbar from "./secondary_navbar/SecondaryNavbar";
 
 const links: Link[] = [
   { name: "Home", href: "/" },
@@ -38,7 +38,7 @@ export default function NavBar() {
           <div className="md:hidden">
             <NavSheet links={links} brands={brands} />
           </div>
-          <ProfilePopover />
+          <Profile />
           {/* <RegisterModal /> */}
         </div>
       </section>

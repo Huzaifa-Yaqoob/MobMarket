@@ -24,7 +24,26 @@ const cardsContent: CardContent[] = [
 
 export default function CardList() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 overflow-auto h-full">
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
+      <HorizontalCard cardContent={cardsContent[0]} />
       <HorizontalCard cardContent={cardsContent[0]} />
       <HorizontalCard cardContent={cardsContent[0]} />
       <HorizontalCard cardContent={cardsContent[0]} />
