@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import Card from "../card/Card";
+import ProductCard from "../card/ProductCard";
 
-export default function CardSlab({
+export default function ProductCardSlab({
   cardsContent,
   cardSlabInfo,
 }: {
@@ -19,7 +19,7 @@ export default function CardSlab({
           <p>Nothing To Show You Here</p>
         ) : (
           cardsContent.map((cardContent) => (
-            <Card
+            <ProductCard
               key={cardContent.id}
               cardContent={cardContent}
               size={"min-w-fit max-w-fit"}

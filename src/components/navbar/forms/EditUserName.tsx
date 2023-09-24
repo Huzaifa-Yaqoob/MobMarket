@@ -31,6 +31,7 @@ export default function EditUserName() {
 
   function onSubmit(values: z.infer<typeof editUsernameFormSchema>) {
     console.log(values);
+    setIsDialogOpen(false);
   }
 
   return (

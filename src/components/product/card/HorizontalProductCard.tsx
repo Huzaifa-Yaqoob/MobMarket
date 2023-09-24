@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
 
-export default function HorizontalCard({
+export default function HorizontalProductCard({
   cardContent,
 }: {
   cardContent: CardContent;

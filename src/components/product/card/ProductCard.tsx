@@ -1,16 +1,11 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Card as ShadcnCard,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import AddToCard from "../AddToCard";
-import CardContent from "./CardContent";
+import ProductCardContent from "./ProductCardContent";
 
-export default function Card({
+export default function ProductCard({
   cardContent,
   size,
 }: {
@@ -18,9 +13,7 @@ export default function Card({
   size: string;
 }) {
   return (
-    <ShadcnCard
-      className={`rounded flex flex-col items-center shadow card ${size}`}
-    >
+    <Card className={`rounded flex flex-col items-center shadow card ${size}`}>
       <div className="ribbon">
         <span>Sale</span>
       </div>
@@ -40,11 +33,11 @@ export default function Card({
             {cardContent.name}
           </CardTitle>
         </CardHeader>
-        <CardContent cardContent={cardContent} />
+        <ProductCardContent cardContent={cardContent} />
       </Link>
       <CardFooter className="py-1 px-0">
         <AddToCard />
       </CardFooter>
-    </ShadcnCard>
+    </Card>
   );
 }
