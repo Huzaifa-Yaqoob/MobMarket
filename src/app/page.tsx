@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import CardRoom from "../components/product/card_view/CardRoom";
-import CardSlab from "@/components/product/card_view/CardSlab";
+import CardRoom from "../components/product/card_view/ProductCardRoom";
+import CardSlab from "@/components/product/card_view/ProductCardSlab";
 import Banner from "@/components/banner/Banner";
 
 const cardsContent: CardContent[] | [] = [

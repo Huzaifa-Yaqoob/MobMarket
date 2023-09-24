@@ -1,43 +1,70 @@
-import { Pencil } from "lucide-react";
+"use client";
 import { useState } from "react";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useForm } from "react-hook-form";
-import { Info } from "lucide-react";
-import { editProfilePicFormSchema } from "@/lib/zodSchemas";
+import Dropzone, { FileRejection } from "react-dropzone";
+import { Pencil, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+
+type FileData = {
+  file: File[] | null;
+  filePreview: string;
+  message: string;
+  errorMessage: string;
+};
 
 export default function EditProfilePic() {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-  const form = useForm<z.infer<typeof editProfilePicFormSchema>>({
-    resolver: zodResolver(editProfilePicFormSchema),
-    defaultValues: {
-      username: "",
-    },
+  const [fileData, setFileData] = useState<FileData>({
+    file: null,
+    filePreview: "https://github.com/shadcn",
+    message: "Drag 'n' drop image here, or click to select image",
+    errorMessage: "",
   });
 
-  function onSubmit(values: z.infer<typeof editProfilePicFormSchema>) {
-    console.log(values);
-  }
+  const onRejection = (file: FileRejection[]) => {
+    setFileData({
+      file: null,
+      filePreview: "https://github.com/shadcn",
+      message: "Drag 'n' drop image here, or click to select image",
+      errorMessage: file[0].errors[0].message + ". Try Again",
+    });
+  };
+
+  const onAccepted = (files: File[]) => {
+    const file = files[0];
+    const selectedFile = Object.assign(file, {
+      preview: URL.createObjectURL(file),
+    });
+    setFileData({
+      file: files,
+      filePreview: selectedFile.preview,
+      message: "Selected image is " + selectedFile.name,
+      errorMessage: "",
+    });
+  };
+
+  const onError = (error: Error) => {
+    setFileData({
+      file: null,
+      filePreview: "https://github.com/shadcn",
+      message: "",
+      errorMessage: "SomeThing went wrong",
+    });
+  };
+
+  const submitHandler = (e: any) => {
+    console.log(fileData.file);
+    e.preventDefault();
+  };
+
   return (
-    <Dialog>
+    <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
         <span className="flex gap-2 items-center font-thin text-sm cursor-pointer text-info hover:underline underline-info">
           edit profile picture <Pencil className="mr-2 h-4 w-4" />
@@ -45,28 +72,46 @@ export default function EditProfilePic() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-              <FormField
-                control={form.control}
-                name="file"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Display Picture</FormLabel>
-                    <FormControl>
-                      <Input placeholder="shadcn" type="file" {...field} />
-                    </FormControl>
-                    <FormDescription className="flex items-center">
-                      <Info className="mr-1 h-4 w-4" />
-                      This is your public display picture.
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
+          <div className="flex flex-col align-middle justify-center items-center gap-2">
+            <Avatar className="w-20 h-20">
+              <AvatarImage src={fileData.filePreview} alt="@shadcn" />
+              <AvatarFallback>CN</AvatarFallback>
+            </Avatar>
+            <form
+              onSubmit={submitHandler}
+              className="flex flex-col gap-2 align-middle w-full"
+            >
+              <Dropzone
+                maxFiles={1}
+                multiple={false}
+                onDropAccepted={onAccepted}
+                onDropRejected={onRejection}
+                onError={onError}
+                accept={{ "image/*": [".png", ".jpg", ".jpeg"] }}
+              >
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps({ className: "dropzone" })}
+                    className={`flex flex-col items-center justify-center align-middle border-[0.15rem] border-dashed rounded w-full py-2 
+                    ${
+                      fileData.errorMessage === ""
+                        ? "border-primary text-primary"
+                        : "border-destructive text-destructive"
+                    } `}
+                  >
+                    <input {...getInputProps()} />
+                    <PlusCircle />
+                    {fileData.errorMessage === "" ? (
+                      <p>{fileData.message}</p>
+                    ) : (
+                      <p>{fileData.errorMessage}</p>
+                    )}
+                  </div>
                 )}
-              />
-              <Button type="submit">Submit</Button>
+              </Dropzone>
+              <Button>Submit</Button>
             </form>
-          </Form>
+          </div>
         </DialogHeader>
       </DialogContent>
     </Dialog>

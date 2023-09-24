@@ -1,6 +1,6 @@
-import Card from "../card/Card";
+import ProductCard from "../card/ProductCard";
 
-export default function CardRoom({
+export default function ProductProductCardRoom({
   cardsContent,
 }: {
   cardsContent: CardContent[];
@@ -11,7 +11,7 @@ export default function CardRoom({
         <p>Nothing To Show You Here</p>
       ) : (
         cardsContent.map((cardContent) => (
-          <Card
+          <ProductCard
             key={cardContent.id}
             cardContent={cardContent}
             size={"flex-grow"}

@@ -9,7 +9,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import CardList from "../../product/card_view/CardList";
+import CardList from "../../product/card_view/ProductCardList";
 
 export default function CartSheet() {
   return (
