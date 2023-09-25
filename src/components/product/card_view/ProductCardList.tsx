@@ -1,3 +1,4 @@
+"use client";
 import HorizontalProductCard from "../card/HorizontalProductCard";
 
 const cardsContent: CardContent[] = [

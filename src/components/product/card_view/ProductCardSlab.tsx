@@ -29,7 +29,7 @@ export default function ProductCardSlab({
       </div>
       <div>
         <Link
-          href={cardSlabInfo.href}
+          href={"/product/latest"}
           className="group text-info flex items-center px-4 text-sm w-fit"
         >
           <span>see more</span>

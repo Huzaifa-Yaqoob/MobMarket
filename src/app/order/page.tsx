@@ -1,5 +1,9 @@
-import React from "react";
+import OrderView from "@/components/order/OrderView";
 
 export default function OrderPage() {
-  return <div></div>;
+  return (
+    <section className="my-container">
+      <OrderView />
+    </section>
+  );
 }

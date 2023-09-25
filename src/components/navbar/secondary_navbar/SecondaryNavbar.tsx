@@ -6,14 +6,14 @@ import FilterSheet from "./FilterSheet";
 
 export default function SecondaryNavbar() {
   return (
-    <div className="flex items-center justify-between ">
+    <div className="flex items-center justify-between gap-2">
       <div className="">
         <SearchBar />
       </div>
-      <div className="flex items-center space-x-4 text-lg ">
+      <div className="flex items-center gap-2 text-lg ">
         <FilterSheet />
         <CartSheet />
-        <Link href="/">
+        <Link href="/order">
           <ShoppingBasket />
         </Link>
       </div>

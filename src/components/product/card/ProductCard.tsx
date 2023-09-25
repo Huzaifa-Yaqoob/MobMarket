@@ -1,4 +1,3 @@
-"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +12,9 @@ export default function ProductCard({
   size: string;
 }) {
   return (
-    <Card className={`rounded flex flex-col items-center shadow card ${size}`}>
+    <Card
+      className={`rounded flex flex-col items-center shadow w-fit card ${size}`}
+    >
       <div className="ribbon">
         <span>Sale</span>
       </div>

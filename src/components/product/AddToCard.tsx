@@ -1,3 +1,4 @@
+"use client";
 import { ShoppingCart, PlusCircle } from "lucide-react";
 import { Button } from "../ui/button";
 
