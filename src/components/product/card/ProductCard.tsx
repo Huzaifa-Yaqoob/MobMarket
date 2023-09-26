@@ -12,9 +12,7 @@ export default function ProductCard({
   size: string;
 }) {
   return (
-    <Card
-      className={`rounded flex flex-col items-center shadow w-fit card ${size}`}
-    >
+    <Card className={`rounded flex flex-col items-center shadow card ${size}`}>
       <div className="ribbon">
         <span>Sale</span>
       </div>

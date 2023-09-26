@@ -31,9 +31,6 @@ export default function Latest() {
   return (
     <div>
       <CardRoom cardsContent={cardsContent} />
-      <CardRoom cardsContent={cardsContent} />
-      <CardRoom cardsContent={cardsContent} />
-      <CardRoom cardsContent={cardsContent} />
     </div>
   );
 }
