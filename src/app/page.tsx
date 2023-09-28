@@ -1,8 +1,6 @@
-import Image from "next/image";
-import { Button } from "@/components/ui/button";
-import CardRoom from "../components/product/card_view/ProductCardRoom";
 import CardSlab from "@/components/product/card_view/ProductCardSlab";
 import Banner from "@/components/banner/Banner";
+import ServiceSection from "@/components/ServiceSection";
 
 const cardsContent: CardContent[] | [] = [
   {
@@ -41,6 +39,7 @@ export default function HomePage() {
       <article className="mt-4 sm:mx-20 md:mx-40">
         <Banner />
       </article>
+      <ServiceSection />
       <main className="">
         <CardSlab cardsContent={cardsContent} cardSlabInfo={cardSlabInfo1} />
         <CardSlab cardsContent={cardsContent} cardSlabInfo={cardSlabInfo2} />
