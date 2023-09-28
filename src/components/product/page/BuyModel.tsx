@@ -1,5 +1,5 @@
 import React from "react";
 
-export default function ProductPage() {
+export default function BuyModel() {
   return <div></div>;
 }

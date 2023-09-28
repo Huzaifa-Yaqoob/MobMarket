@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { Trash2 } from "lucide-react";
 import Link from "next/link";
+import ItemPrice from "../ItemPrice";
 
 export default function HorizontalProductCard({
   cardContent,
@@ -22,10 +23,7 @@ export default function HorizontalProductCard({
         <div className="text-primary">
           <h4>{cardContent.name}</h4>
         </div>
-        <div className="text-success space-x-2">
-          <span className="strikethrough">${cardContent.price}</span>
-          <span>${cardContent.sale?.salePrice} </span>
-        </div>
+        <ItemPrice />
       </Link>
       <div className="hover:text-danger px-2 cursor-pointer">
         <Trash2 className="mr-2 h-4 w-4" />

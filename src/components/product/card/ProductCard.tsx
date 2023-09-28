@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import AddToCard from "../AddToCard";
+import AddToCart from "../AddToCart";
 import ProductCardContent from "./ProductCardContent";
 
 export default function ProductCard({
@@ -35,7 +35,7 @@ export default function ProductCard({
         <ProductCardContent cardContent={cardContent} />
       </Link>
       <CardFooter className="py-1 px-0">
-        <AddToCard />
+        <AddToCart />
       </CardFooter>
     </Card>
   );

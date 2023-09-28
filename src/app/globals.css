@@ -234,8 +234,8 @@
   left: 0;
   top: 50%;
   right: 0;
-  border-top: 3px solid;
-  border-color: hsl(var(--success));
+  border-top: 2px solid;
+  border-color: hsl(var(--foreground));
   -webkit-transform: rotate(-5deg);
   -moz-transform: rotate(-5deg);
   -ms-transform: rotate(-5deg);
