@@ -26,7 +26,10 @@ export function SearchBar() {
       {searchValue === "" ? (
         <Search className="mr-2 h-4 w-4" />
       ) : (
-        <X className="mr-2 h-4 w-4" onClick={() => setSearchValue("")} />
+        <X
+          className="mr-2 h-4 w-4 cursor-pointer"
+          onClick={() => setSearchValue("")}
+        />
       )}
     </form>
   );
