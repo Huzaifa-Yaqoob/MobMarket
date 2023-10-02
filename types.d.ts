@@ -4,8 +4,8 @@ type Link = {
 };
 
 type SelectItem = {
-  id: string;
-  name: string;
+  _id: string;
+  label: string;
   value: string;
 };
 

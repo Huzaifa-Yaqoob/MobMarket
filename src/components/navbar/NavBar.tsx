@@ -14,12 +14,12 @@ const links: Link[] = [
 ];
 
 const brands: SelectItem[] = [
-  { id: "abc", name: "Oppo", value: "" },
-  { id: "abc", name: "Vivo", value: "" },
-  { id: "abc", name: "Samsung", value: "" },
-  { id: "abc", name: "Xiomi", value: "" },
-  { id: "abc", name: "Iphone", value: "" },
-  { id: "abc", name: "Realme", value: "" },
+  { _id: "abc", label: "Oppo", value: "" },
+  { _id: "abc", label: "Vivo", value: "" },
+  { _id: "abc", label: "Iphone", value: "" },
+  { _id: "abc", label: "Samsung", value: "" },
+  { _id: "abc", label: "Realme", value: "" },
+  { _id: "abc", label: "Xiomi", value: "" },
 ];
 
 export default function NavBar() {

@@ -24,15 +24,15 @@ export default function BrandItem({ brands }: { brands: SelectItem[] }) {
         <CommandEmpty>Sorry we don`t have that brand</CommandEmpty>
         <CommandGroup heading="Brands" className="space-y-2">
           {brands.map((brand) => (
-            <Link href={`/brand/${brand.id}`} key={brand.id}>
+            <Link href={`/brand/${brand._id}`} key={brand._id}>
               <CommandItem
                 className={
-                  pathName.includes(brand.name)
+                  pathName.includes(brand.label)
                     ? "bg-primary text-primary-foreground"
                     : ""
                 }
               >
-                {brand.name}
+                {brand.label}
               </CommandItem>
             </Link>
           ))}
