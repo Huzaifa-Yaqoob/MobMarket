@@ -3,6 +3,7 @@ import CustomerServices from "./CustomerServices";
 import SocialLinks from "./SocialLinks";
 import ContactInformation from "./ContactInformation";
 import PaymentMethods from "./PaymentMethods";
+import BuyModel from "../product/page/BuyModel";
 
 export default function Footer() {
   return (
@@ -10,8 +11,8 @@ export default function Footer() {
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <QuickLinks />
         <CustomerServices />
-        <ContactInformation />
         <SocialLinks />
+        <ContactInformation />
       </div>
       <div className="flex flex-col items-center gap-4">
         <PaymentMethods />

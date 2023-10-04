@@ -11,13 +11,13 @@ export default function PaymentMethods() {
       <div className="flex gap-2 items-center">
         <Image
           alt="paypal"
-          src={"payment_methods/paypal.svg"}
+          src={"/payment_methods/paypal.svg"}
           width={40}
           height={40}
         />
         <Image
           alt="paypal"
-          src={"payment_methods/jazzcash.svg"}
+          src={"/payment_methods/jazzcash.svg"}
           width={40}
           height={40}
         />

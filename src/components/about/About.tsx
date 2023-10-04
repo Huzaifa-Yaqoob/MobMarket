@@ -1,4 +1,16 @@
-import React from "react";
+"use client";
+import { useState, useCallback } from "react";
+import { Map } from "react-map-gl";
+
+const containerStyle = {
+  width: "400px",
+  height: "400px",
+};
+
+const center = {
+  lat: -3.745,
+  lng: -38.523,
+};
 
 export default function About() {
   return (

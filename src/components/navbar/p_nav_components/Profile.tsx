@@ -55,7 +55,7 @@ export default function Profile() {
         </div>
         <Separator />
         <Button
-          className="hover:bg-danger text-danger hover:text-foreground border-danger hover:border-foreground"
+          className="hover:bg-danger text-danger hover:text-foreground border-danger hover:border-background w-fit"
           variant="outline"
           onClick={logOutHandler}
         >

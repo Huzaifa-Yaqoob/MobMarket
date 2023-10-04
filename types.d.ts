@@ -32,3 +32,8 @@ type CardContent = {
   sale: Sale;
   info: Info;
 };
+
+type Location = {
+  latitude: number;
+  longitude: number;
+};

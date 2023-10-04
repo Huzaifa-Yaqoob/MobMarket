@@ -28,7 +28,7 @@ export default function NavBar() {
       <section className="flex justify-between items-center bg-background my-container top-0 sticky shadow z-10">
         <div className="text-primary">
           <Link href={"/"} className="flex items-center gap-2">
-            <Image src={"Logo.svg"} alt="Logo" width={36} height={36} />
+            <Image src={"/Logo.svg"} alt="Logo" width={36} height={36} />
             <strong>MobMarket</strong>
           </Link>
         </div>

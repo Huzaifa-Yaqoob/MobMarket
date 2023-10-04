@@ -16,7 +16,7 @@ export default function ItemBox() {
         </div>
       </div>
       <div className="flex flex-row md:flex-col justify-between items-end">
-        <StockStatus />
+        <StockStatus status={"In Stock"} />
         <ItemRating />
       </div>
     </section>

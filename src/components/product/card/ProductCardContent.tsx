@@ -10,7 +10,7 @@ export default function ProductCardContent({
   return (
     <CardContent className="flex flex-col items-center text-base py-0 px-0">
       <ItemPrice />
-      <StockStatus />
+      <StockStatus status={"Out of Stock"} />
     </CardContent>
   );
 }

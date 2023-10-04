@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Completed, Ongoing, Delayed, Cancel } from "./OrderStatus";
+import Status from "./OrderStatus";
 
 export default function OrderCard() {
   return (
@@ -19,7 +19,7 @@ export default function OrderCard() {
             <CardTitle>Iphone 11 pro</CardTitle>
             <span>Bill: 15000</span>
             <span className="text-muted-foreground">12-14-2023</span>
-            <Delayed />
+            <Status status={"Delayed"} />
           </div>
         </CardHeader>
       </Link>

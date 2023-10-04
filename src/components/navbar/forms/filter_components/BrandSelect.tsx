@@ -33,7 +33,7 @@ export default function BrandSelect({
         option: () => "bg-primary p-1 rounded max-w-fit",
         multiValue: () => "bg-background p-1 space-x-1 rounded max-w-fit",
         multiValueLabel: () => "bg-primary px-1 rounded-sm",
-        multiValueRemove: () => "hover:text-destructive",
+        multiValueRemove: () => "hover:text-destructive text-foreground",
         placeholder: () => "text-muted-foreground",
         indicatorSeparator: () => "bg-muted-foreground",
       }}

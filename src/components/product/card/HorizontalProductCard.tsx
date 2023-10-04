@@ -9,7 +9,7 @@ export default function HorizontalProductCard({
   cardContent: CardContent;
 }) {
   return (
-    <div className="flex items-center justify-between gap-2 py-2 bg-secondary rounded">
+    <div className="flex items-center justify-between gap-2 py-2 bg-secondary rounded animate-fade-right animate-once animate-duration-1000">
       <div className="h-full">
         <Image
           src={cardContent.imageUrl}
