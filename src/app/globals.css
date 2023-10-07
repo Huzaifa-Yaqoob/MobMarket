@@ -170,40 +170,6 @@
   border-top: 3px solid hsl(var(--success));
 }
 
-/* Loader */
-.custom-loader {
-  width: 50px;
-  height: 50px;
-  display: grid;
-  border: 4px solid hsl(var(--background));
-  border-radius: 50%;
-  border-color: hsl(var(--foreground)) hsl(var(--background));
-  animation: loader 1s infinite linear;
-}
-.custom-loader::before,
-.custom-loader::after {
-  content: "";
-  grid-area: 1/1;
-  margin: 2px;
-  border: inherit;
-  border-radius: 50%;
-}
-.custom-loader::before {
-  border-color: hsl(var(--primary)) hsl(var(--background));
-  animation: inherit;
-  animation-duration: 0.5s;
-  animation-direction: reverse;
-}
-.custom-loader::after {
-  margin: 8px;
-}
-
-@keyframes loader {
-  100% {
-    transform: rotate(1turn);
-  }
-}
-
 /* cut line on actual price of product */
 .strikethrough {
   position: relative;

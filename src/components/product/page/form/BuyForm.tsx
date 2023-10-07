@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import UserLocation from "./UserLocation";
 import useGeoNavigator from "@/hooks/useGeoNavigator";
+import MapToGoogleMap from "@/components/map/MapToGoogleMap";
 
 export default function BuyForm() {
   const { isLoading, error, geoLocation } = useGeoNavigator();
@@ -85,8 +86,13 @@ export default function BuyForm() {
                   geoLocation={geoLocation}
                 />
               </FormControl>
-              <FormDescription>
+              <FormDescription className="flex justify-between items-center">
                 You will get your product on your Address
+                <MapToGoogleMap
+                  geoLocation={geoLocation}
+                  error={error}
+                  isLoading={isLoading}
+                />
               </FormDescription>
               <FormMessage />
             </FormItem>
