@@ -1,27 +1,29 @@
 import * as z from "zod";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Map from "@/components/map/Map";
-import useGeoNavigator from "@/hooks/useGeoNavigator";
-import { orderFormSchema } from "@/lib/zodSchemas";
+import Loader from "@/components/common/Loader";
+import Error from "@/components/common/Error";
 
 type LocationFieldProps = {
-  field: {
-    name: string;
-    value: z.infer<typeof orderFormSchema>["geoLocation"];
-  };
+  isError: boolean;
+  isLoading: boolean;
+  geoLocation: { lat: number; lng: number };
 };
 
 export default function UserLocation({
-  field,
+  isError,
+  isLoading,
+  geoLocation,
 }: LocationFieldProps): React.ReactElement {
-  const { isLoading, isError, geoLocation } = useGeoNavigator();
-
   return (
-    <AspectRatio ratio={15 / 5} className="rounded overflow-hidden">
+    <AspectRatio
+      ratio={15 / 5}
+      className="rounded overflow-hidden border border-input"
+    >
       {isLoading ? (
-        <>Loading</>
+        <Loader />
       ) : isError ? (
-        <>Error</>
+        <Error msg={"This is error message."} />
       ) : (
         <Map geoLocation={geoLocation} />
       )}

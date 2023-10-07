@@ -27,12 +27,12 @@ export default function BuyForm() {
       geoLocation: { lat: 0, lng: 0 },
     },
   });
+
   if (!isLoading) {
     if (!isError) {
       form.setValue("geoLocation", geoLocation);
     }
   }
-  // console.log(isLoading, isError, geoLocation);
 
   function onSubmit(values: z.infer<typeof orderFormSchema>) {
     // Do something with the form values.
@@ -79,10 +79,14 @@ export default function BuyForm() {
             <FormItem>
               <FormLabel>Location :</FormLabel>
               <FormControl>
-                <UserLocation field={field} />
+                <UserLocation
+                  isError={isError}
+                  isLoading={isLoading}
+                  geoLocation={geoLocation}
+                />
               </FormControl>
               <FormDescription>
-                You will get your product on your this Address
+                You will get your product on your Address
               </FormDescription>
               <FormMessage />
             </FormItem>
