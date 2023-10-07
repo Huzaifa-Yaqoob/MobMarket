@@ -1,12 +1,17 @@
-export default function getLocation() {
+type Location = {
+  lat: number;
+  lng: number;
+};
+
+export default function getLocation(): Promise<Location> {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
-          const latitude = position.coords.latitude;
-          const longitude = position.coords.longitude;
-          console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
-          resolve({ latitude, longitude });
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          console.log(`Latitude: ${lat}, Longitude: ${lng}`);
+          resolve({ lat, lng });
         },
         (error) => {
           console.error("Error getting location:", error);
@@ -18,25 +23,4 @@ export default function getLocation() {
       reject(new Error("Geolocation is not supported by your browser."));
     }
   });
-}
-
-export async function initializeOrderForm() {
-  try {
-    const locationData = await getLocation();
-    const defaultValues = {
-      username: "",
-      phone: "",
-      location: locationData,
-    };
-    return defaultValues;
-  } catch (error) {
-    console.error("Error initializing form with default values:", error);
-    // Handle the error gracefully, e.g., set default values to some fallback values.
-    const defaultValuesWithError = {
-      username: "",
-      phone: "",
-      location: { latitude: 0, longitude: 0 }, // Fallback values
-    };
-    return defaultValuesWithError;
-  }
 }

@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -15,30 +14,25 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import getLocation, { initializeOrderForm } from "@/lib/getLocation";
 import UserLocation from "./UserLocation";
+import useGeoNavigator from "@/hooks/useGeoNavigator";
 
 export default function BuyForm() {
-  let location = { latitude: 0, longitude: 0 };
+  const { isLoading, isError, geoLocation } = useGeoNavigator();
   const form = useForm<z.infer<typeof orderFormSchema>>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
       username: "",
       phone: "",
-      location: getLocation(),
+      geoLocation: { lat: 0, lng: 0 },
     },
   });
-
-  useEffect(() => {
-    async function getLocationValue() {
-      try {
-        return await getLocation();
-      } catch (error) {
-        return { latitude: 0, longitude: 0 };
-      }
+  if (!isLoading) {
+    if (!isError) {
+      form.setValue("geoLocation", geoLocation);
     }
-    // location = getLocationValue();
-  }, []);
+  }
+  // console.log(isLoading, isError, geoLocation);
 
   function onSubmit(values: z.infer<typeof orderFormSchema>) {
     // Do something with the form values.
@@ -50,7 +44,7 @@ export default function BuyForm() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="flex flex-col gap-4 mt-4"
+        className="flex flex-col gap-4"
       >
         <FormField
           control={form.control}
@@ -80,13 +74,16 @@ export default function BuyForm() {
         />
         <FormField
           control={form.control}
-          name="location"
+          name="geoLocation"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Location :</FormLabel>
               <FormControl>
                 <UserLocation field={field} />
               </FormControl>
+              <FormDescription>
+                You will get your product on your this Address
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}

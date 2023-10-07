@@ -1,13 +1,18 @@
 import { useState, useEffect } from "react";
+import * as z from "zod";
 import { Star } from "lucide-react";
+import { FieldValues, UseFormSetValue } from "react-hook-form";
+import { editReviewFormSchema } from "@/lib/zodSchemas";
 
-export default function RatingField({
-  field,
-  setValue,
-}: {
-  field: any;
-  setValue: any;
-}) {
+type RatingFieldProps = {
+  field: {
+    name: string;
+    value: z.infer<typeof editReviewFormSchema>["rating"];
+  };
+  setValue: UseFormSetValue<{ rating: number }>;
+};
+
+export default function RatingField({ field, setValue }: RatingFieldProps) {
   const [rating, setRating] = useState(field.value);
 
   const starArray: JSX.Element[] = [];

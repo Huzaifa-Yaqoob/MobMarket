@@ -1,12 +1,16 @@
+import * as z from "zod";
 import ReactSlider from "react-slider";
+import { filterProductsFormSchema } from "@/lib/zodSchemas";
 
-export default function RAMRange({
-  field,
-  ramRange,
-}: {
-  field: any;
+type RAMRangeProps = {
+  field: {
+    name: string;
+    value: z.infer<typeof filterProductsFormSchema>["priceRange"];
+  };
   ramRange: number[];
-}) {
+};
+
+export default function RAMRange({ field, ramRange }: RAMRangeProps) {
   return (
     <div className="w-full">
       <div className="flex justify-between text-sm mb-4">

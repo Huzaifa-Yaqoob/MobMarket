@@ -1,15 +1,17 @@
+import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import Select from "react-select";
+import { filterProductsFormSchema } from "@/lib/zodSchemas";
 
-export default function BrandSelect({
-  field,
-  option,
-}: {
-  field: any;
+type BrandSelectProps = {
+  field: {
+    name: string;
+    value: z.infer<typeof filterProductsFormSchema>["brands"];
+  };
   option: SelectItem[];
-}) {
-  // console.log(field);
+};
 
+export default function BrandSelect({ field, option }: BrandSelectProps) {
   return (
     <Select
       {...field}

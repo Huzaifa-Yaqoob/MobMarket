@@ -21,9 +21,9 @@ export const orderFormSchema = z.object({
       new RegExp(/^03[0-9]{9}$/),
       "Please enter valid Pakistani phone number e.g., 03123456789"
     ),
-  location: z.object({
-    latitude: z.number(),
-    longitude: z.number(),
+  geoLocation: z.object({
+    lat: z.coerce.number(),
+    lng: z.coerce.number(),
   }),
 });
 

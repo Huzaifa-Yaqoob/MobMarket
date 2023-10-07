@@ -1,12 +1,16 @@
+import * as z from "zod";
 import ReactSlider from "react-slider";
+import { filterProductsFormSchema } from "@/lib/zodSchemas";
 
-export default function PriceRange({
-  field,
-  priceRange,
-}: {
-  field: any;
+type PriceRangeProps = {
+  field: {
+    name: string;
+    value: z.infer<typeof filterProductsFormSchema>["priceRange"];
+  };
   priceRange: number[];
-}) {
+};
+
+export default function PriceRange({ field, priceRange }: PriceRangeProps) {
   return (
     <div className="w-full">
       <div className="flex justify-between text-sm mb-4">

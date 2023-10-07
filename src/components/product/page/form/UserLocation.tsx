@@ -1,17 +1,30 @@
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
-import getLocation from "@/lib/getLocation";
+import * as z from "zod";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
+import Map from "@/components/map/Map";
+import useGeoNavigator from "@/hooks/useGeoNavigator";
+import { orderFormSchema } from "@/lib/zodSchemas";
 
-export default function UserLocation({ field }: { field: any }) {
-  const [location, setLocation] = useState(field.value);
-  console.log(field.value);
-  const handleGetLocation = () => {
-    setLocation(getLocation());
-    console.log(getLocation());
+type LocationFieldProps = {
+  field: {
+    name: string;
+    value: z.infer<typeof orderFormSchema>["geoLocation"];
   };
+};
+
+export default function UserLocation({
+  field,
+}: LocationFieldProps): React.ReactElement {
+  const { isLoading, isError, geoLocation } = useGeoNavigator();
+
   return (
-    <div>
-      <Input {...field} onFocus={handleGetLocation} value={location} />
-    </div>
+    <AspectRatio ratio={15 / 5} className="rounded overflow-hidden">
+      {isLoading ? (
+        <>Loading</>
+      ) : isError ? (
+        <>Error</>
+      ) : (
+        <Map geoLocation={geoLocation} />
+      )}
+    </AspectRatio>
   );
 }
