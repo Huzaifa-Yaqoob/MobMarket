@@ -5,13 +5,13 @@ import Loader from "@/components/common/Loader";
 import Error from "@/components/common/Error";
 
 type LocationFieldProps = {
-  isError: boolean;
+  error: string;
   isLoading: boolean;
   geoLocation: { lat: number; lng: number };
 };
 
 export default function UserLocation({
-  isError,
+  error,
   isLoading,
   geoLocation,
 }: LocationFieldProps): React.ReactElement {
@@ -22,8 +22,8 @@ export default function UserLocation({
     >
       {isLoading ? (
         <Loader />
-      ) : isError ? (
-        <Error msg={"This is error message."} />
+      ) : error !== "" ? (
+        <Error msg={error} />
       ) : (
         <Map geoLocation={geoLocation} />
       )}

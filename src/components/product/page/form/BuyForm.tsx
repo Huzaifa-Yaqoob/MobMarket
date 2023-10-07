@@ -18,7 +18,7 @@ import UserLocation from "./UserLocation";
 import useGeoNavigator from "@/hooks/useGeoNavigator";
 
 export default function BuyForm() {
-  const { isLoading, isError, geoLocation } = useGeoNavigator();
+  const { isLoading, error, geoLocation } = useGeoNavigator();
   const form = useForm<z.infer<typeof orderFormSchema>>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
@@ -29,7 +29,7 @@ export default function BuyForm() {
   });
 
   if (!isLoading) {
-    if (!isError) {
+    if (error !== "") {
       form.setValue("geoLocation", geoLocation);
     }
   }
@@ -80,7 +80,7 @@ export default function BuyForm() {
               <FormLabel>Location :</FormLabel>
               <FormControl>
                 <UserLocation
-                  isError={isError}
+                  error={error}
                   isLoading={isLoading}
                   geoLocation={geoLocation}
                 />
