@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { Pencil, PlusCircle } from "lucide-react";
@@ -11,14 +12,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-type FileData = {
+interface FileData {
   file: File[] | null;
   filePreview: string;
   message: string;
   errorMessage: string;
-};
+}
 
-export default function EditProfilePic() {
+export default function EditProfilePic(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [fileData, setFileData] = useState<FileData>({
     file: null,

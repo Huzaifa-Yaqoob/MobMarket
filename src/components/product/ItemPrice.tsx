@@ -1,4 +1,4 @@
-export default function ItemPrice() {
+export default function ItemPrice(): React.ReactElement {
   return (
     <div className="space-x-1">
       <span className="strikethrough text-xl">$1500</span>

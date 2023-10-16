@@ -1,4 +1,5 @@
 "use client";
+
 import { use, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,9 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import RatingField from "./edit_review_field/RatingField";
-import { Input } from "@/components/ui/input";
 
-export default function EditReviewForm() {
+export default function EditReviewForm(): React.ReactElement {
   const form = useForm<z.infer<typeof editReviewFormSchema>>({
     resolver: zodResolver(editReviewFormSchema),
     defaultValues: {

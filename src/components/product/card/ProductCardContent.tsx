@@ -6,7 +6,7 @@ export default function ProductCardContent({
   cardContent,
 }: {
   cardContent: CardContent;
-}) {
+}): React.ReactElement {
   return (
     <CardContent className="flex flex-col items-center text-base py-0 px-0">
       <ItemPrice />

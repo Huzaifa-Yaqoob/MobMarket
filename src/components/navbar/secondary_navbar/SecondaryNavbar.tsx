@@ -4,7 +4,7 @@ import CartSheet from "./CartSheet";
 import { SearchBar } from "./SearchBar";
 import FilterSheet from "./FilterSheet";
 
-export default function SecondaryNavbar() {
+export default function SecondaryNavbar(): React.ReactElement {
   return (
     <div className="flex items-center justify-between gap-2">
       <div className="">

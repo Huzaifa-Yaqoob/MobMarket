@@ -4,7 +4,7 @@ import ItemRating from "./ItemRating";
 import ItemPrice from "../ItemPrice";
 import ItemVariant from "./ItemVariant";
 
-export default function ItemBox() {
+export default function ItemBox(): React.ReactElement {
   return (
     <section className="mt-4 flex flex-col md:flex-row justify-between gap-4">
       <div className="flex flex-col md:flex-row gap-4">

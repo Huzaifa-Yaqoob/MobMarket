@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: "MobMarket | Contact",
 };
 
-export default function ContactPage() {
+export default function ContactPage(): React.ReactElement {
   return (
     <div className="my-container h-full flex justify-center items-center contact_background">
       <section className="text-sm grid sm:grid-cols-2 gap-4">

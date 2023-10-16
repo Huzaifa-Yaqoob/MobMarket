@@ -1,4 +1,3 @@
-"use client";
 import { ShoppingCart } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -11,7 +10,7 @@ import {
 } from "@/components/ui/sheet";
 import CardList from "../../product/card_view/ProductCardList";
 
-export default function CartSheet() {
+export default function CartSheet(): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger asChild className="cursor-pointer">

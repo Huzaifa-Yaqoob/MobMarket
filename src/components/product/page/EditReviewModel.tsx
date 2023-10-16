@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/dialog";
 import EditReviewForm from "./form/EditReviewForm";
 
-export default function EditReviewModel() {
+export default function EditReviewModel(): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger

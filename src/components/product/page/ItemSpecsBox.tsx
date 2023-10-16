@@ -1,6 +1,6 @@
 import { Database, MemoryStick, BatteryFull, Calendar } from "lucide-react";
 
-export default function ItemSpecsBox() {
+export default function ItemSpecsBox(): React.ReactElement {
   return (
     <section className="flex items-center w-full mt-8">
       <div className="flex flex-col items-center text-xs flex-grow ">

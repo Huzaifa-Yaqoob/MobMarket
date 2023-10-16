@@ -2,7 +2,7 @@ import ItemBox from "./ItemBox";
 import ItemVariant from "./ItemVariant";
 import ItemSpecsBox from "./ItemSpecsBox";
 
-export default function ItemView() {
+export default function ItemView(): React.ReactElement {
   return (
     <section className="flex flex-col gap-4">
       <ItemBox />

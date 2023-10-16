@@ -1,39 +1,68 @@
-import { Map, AlertTriangle } from "lucide-react";
-import { TailSpin } from "react-loader-spinner";
+"use client";
 
-type MapToGoogleMapProps = {
+import { useState, useEffect } from "react";
+import { Map, AlertTriangle } from "lucide-react";
+import { Skeleton } from "../ui/skeleton";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+
+interface MapToGoogleMapProps {
   isLoading: boolean;
   error: string;
-  geoLocation: {
-    lat: number;
-    lng: number;
-  };
-};
+  geoLocation: GeoLocation;
+}
 
 export default function MapToGoogleMap({
   isLoading,
   error,
   geoLocation,
-}: MapToGoogleMapProps) {
+}: MapToGoogleMapProps): React.ReactElement {
+  const [tipOpen, setTipOpen] = useState(true);
+
+  useEffect(() => {
+    (function () {
+      setTimeout(function () {
+        setTipOpen(false);
+      }, 10000);
+    })();
+  }, []);
   const mapUrl = `https://www.google.com/maps?q=${geoLocation.lat},${geoLocation.lng}`;
 
   return (
-    <div className="bg-primary text-primary-foreground rounded p-1 cursor-pointer">
+    <>
       {isLoading ? (
-        <TailSpin
-          radius={1}
-          color="hsl(var(--primary-foreground))"
-          ariaLabel="puff-loading"
-          wrapperClass="h-5 w-5 flex items-center"
-          visible={true}
-        />
+        <Skeleton className="h-8 w-8 bg-primary" />
       ) : error !== "" ? (
-        <AlertTriangle />
+        <div className="bg-destructive text-destructive-foreground rounded p-1">
+          <AlertTriangle />
+        </div>
       ) : (
-        <a href={mapUrl} target="_blank">
-          <Map />
-        </a>
+        <TooltipProvider>
+          <Tooltip open={tipOpen}>
+            <TooltipTrigger type="button">
+              <a
+                href={mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-primary text-primary-foreground rounded p-1"
+              >
+                <Map />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent
+              side="bottom"
+              align="center"
+              className="border border-primary text-primary"
+            >
+              <p>Open in Google Maps</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
       )}
-    </div>
+    </>
   );
 }

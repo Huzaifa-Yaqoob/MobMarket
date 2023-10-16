@@ -1,6 +1,6 @@
 import { Truck, ShieldCheck, ArchiveRestore } from "lucide-react";
 
-export default function ServiceSection() {
+export default function ServiceSection(): React.ReactElement {
   return (
     <aside className="my-container flex mt-8">
       <div className="flex flex-col items-center text-xs flex-grow ">

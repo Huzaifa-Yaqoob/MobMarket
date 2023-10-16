@@ -2,7 +2,7 @@ import { Dancing_Script } from "next/font/google";
 
 const dancingScript = Dancing_Script({ subsets: ["latin"] });
 
-export default function ThanksMessage() {
+export default function ThanksMessage(): React.ReactElement {
   return (
     <q
       className={`${dancingScript.className} text-center px-2 sm:px-5 md:px-20 lg:px-32 text-2xl text-primary`}

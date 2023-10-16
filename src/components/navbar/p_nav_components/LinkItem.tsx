@@ -1,14 +1,15 @@
-"use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
   NavigationMenuItem,
   NavigationMenuLink,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export default function LinkItem({ links }: { links: Link[] }) {
+export default function LinkItem({
+  links,
+}: {
+  links: Link[];
+}): React.ReactElement {
   const pathname = usePathname();
   return (
     <>

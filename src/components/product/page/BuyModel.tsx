@@ -5,7 +5,7 @@ import BuyForm from "./form/BuyForm";
 import OrderFormBox from "@/components/order/OrderFormBox";
 import { Separator } from "@/components/ui/separator";
 
-export default function BuyModel() {
+export default function BuyModel(): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -15,10 +15,10 @@ export default function BuyModel() {
         </Button>
       </DialogTrigger>
       <DialogContent>
-        <div className="mt-4 space-y-2">
+        <div className="mt-2 space-y-1">
           <OrderFormBox />
           <Separator />
-          <BuyForm />
+          <BuyForm id={"abcd"} />
         </div>
       </DialogContent>
     </Dialog>

@@ -10,7 +10,7 @@ export default function ProductCard({
 }: {
   cardContent: CardContent;
   size: string;
-}) {
+}): React.ReactElement {
   return (
     <Card className={`rounded flex flex-col items-center shadow card ${size}`}>
       <div className="ribbon">

@@ -1,7 +1,8 @@
 "use client";
+
 import Link from "next/link";
 import { useState } from "react";
-import { LogOut, Pencil, Crown } from "lucide-react";
+import { LogOut, Crown } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "../../ui/separator";
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export default function Profile() {
+export default function Profile(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const logOutHandler = () => {

@@ -13,7 +13,7 @@ export default function NavSheet({
 }: {
   links: Link[];
   brands: SelectItem[];
-}) {
+}): React.ReactElement {
   const pathName = usePathname();
 
   return (

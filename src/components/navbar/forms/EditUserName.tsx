@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { Pencil } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,7 +20,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-export default function EditUserName() {
+export default function EditUserName(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const form = useForm<z.infer<typeof editUsernameFormSchema>>({

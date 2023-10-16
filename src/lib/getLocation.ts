@@ -1,16 +1,10 @@
-type Location = {
-  lat: number;
-  lng: number;
-};
-
-export default function getLocation(): Promise<Location> {
+export default function getLocation(): Promise<GeoLocation> {
   return new Promise((resolve, reject) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-          console.log(`Latitude: ${lat}, Longitude: ${lng}`);
           resolve({ lat, lng });
         },
         (error) => {

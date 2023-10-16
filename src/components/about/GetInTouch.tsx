@@ -1,6 +1,4 @@
-import React from "react";
-
-export default function GetInTouch() {
+export default function GetInTouch(): React.ReactElement {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold text-primary border-l-8 border-primary pl-2">

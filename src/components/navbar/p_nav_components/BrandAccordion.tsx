@@ -6,7 +6,11 @@ import {
 } from "@/components/ui/accordion";
 import BrandItem from "./BrandItem";
 
-export default function BrandAccordion({ brands }: { brands: SelectItem[] }) {
+export default function BrandAccordion({
+  brands,
+}: {
+  brands: SelectItem[];
+}): React.ReactElement {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">

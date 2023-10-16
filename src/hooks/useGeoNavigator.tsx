@@ -1,16 +1,12 @@
 "use client";
+
 import { useState, useEffect } from "react";
 import getLocation from "@/lib/getLocation";
-
-type Location = {
-  lat: number;
-  lng: number;
-};
 
 export default function useGeoNavigator() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
-  const [geoLocation, setGeoLocation] = useState<Location>({
+  const [geoLocation, setGeoLocation] = useState<GeoLocation>({
     lat: 0,
     lng: 0,
   });

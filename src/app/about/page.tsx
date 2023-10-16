@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "MobMarket | About",
 };
 
-export default function AboutPage() {
+export default function AboutPage(): React.ReactElement {
   return (
     <div className="my-container flex flex-col gap-4 ">
       <div className="fixed top-1/2 left-2/4 z-[-1] w-20 h-20">

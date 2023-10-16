@@ -5,6 +5,6 @@ export const metadata: Metadata = {
   title: "MobMarket | Popular",
 };
 
-export default function Popular() {
+export default function Popular(): React.ReactElement {
   return <div></div>;
 }

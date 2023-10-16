@@ -1,5 +1,3 @@
-"use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -9,12 +7,13 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
-import { Separator } from "../../ui/separator";
 
-export default function BrandItem({ brands }: { brands: SelectItem[] }) {
+export default function BrandItem({
+  brands,
+}: {
+  brands: SelectItem[];
+}): React.ReactElement {
   const pathName = usePathname();
 
   return (

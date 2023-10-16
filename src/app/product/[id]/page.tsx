@@ -1,7 +1,11 @@
 import ItemView from "@/components/product/page/ItemView";
 import BuyModel from "@/components/product/page/BuyModel";
 
-export default function Phone({ params }: { params: { id: string } }) {
+export default function Phone({
+  params,
+}: {
+  params: { id: string };
+}): React.ReactElement {
   // console.log(params.id);
   return (
     <div className="my-container ">

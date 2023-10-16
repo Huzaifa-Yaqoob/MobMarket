@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function notFound() {
+export default function notFound(): React.ReactElement {
   return (
     <div className="flex flex-col justify-center items-center gap-4">
       <div className="glitch-wrapper mt-[5rem] text-2xl">

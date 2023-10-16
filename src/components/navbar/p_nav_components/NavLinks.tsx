@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -17,7 +16,7 @@ export default function NavLinks({
 }: {
   links: Link[];
   brands: SelectItem[];
-}) {
+}): React.ReactElement {
   return (
     <NavigationMenu className="hidden md:block">
       <NavigationMenuList className="space-x-4">

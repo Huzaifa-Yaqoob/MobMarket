@@ -8,7 +8,7 @@ export default function ProductCardSlab({
 }: {
   cardsContent: CardContent[];
   cardSlabInfo: Link;
-}) {
+}): React.ReactElement {
   return (
     <section className="py-4 text-lg flex flex-col gap-4">
       <h3 className="bg-primary text-primary-foreground px-4 py-2">

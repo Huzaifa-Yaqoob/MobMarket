@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Status from "./OrderStatus";
 
-export default function OrderCard() {
+export default function OrderCard(): React.ReactElement {
   return (
     <Card className="w-full">
       <Link href="/">

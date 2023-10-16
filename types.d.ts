@@ -1,28 +1,30 @@
-type Link = {
-  name: string;
-  href: string;
-};
-
-type SelectItem = {
-  _id: string;
-  label: string;
-  value: string;
-};
-
+// Types
 type Sale = {
   saleName: string;
   salePrice: number;
   saleEndTime: string;
 } | null;
 
-type Info = {
+// Interface
+interface Link {
+  name: string;
+  href: string;
+}
+
+interface SelectItem {
+  _id: string;
+  label: string;
+  value: string;
+}
+
+interface Info {
   processor: string;
   ram: string;
   storage: string;
   camera: string;
-};
+}
 
-type CardContent = {
+interface CardContent {
   id: string;
   name: string;
   price: number;
@@ -31,9 +33,15 @@ type CardContent = {
   rating: number;
   sale: Sale;
   info: Info;
-};
+}
 
-type Location = {
+interface GeoLocation {
   lat: number;
   lng: number;
-};
+}
+
+interface TImage {
+  name: string;
+  url: string;
+  alt: string;
+}

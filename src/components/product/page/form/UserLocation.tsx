@@ -3,11 +3,11 @@ import Map from "@/components/map/Map";
 import Loader from "@/components/common/Loader";
 import Error from "@/components/common/Error";
 
-type LocationFieldProps = {
+interface LocationFieldProps {
   error: string;
   isLoading: boolean;
-  geoLocation: { lat: number; lng: number };
-};
+  geoLocation: GeoLocation;
+}
 
 export default function UserLocation({
   error,

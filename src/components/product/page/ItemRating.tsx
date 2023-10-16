@@ -1,8 +1,8 @@
 import { Star } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import EditReviewModel from "./EditeRviewModel";
+import EditReviewModel from "./EditReviewModel";
 
-export default function ItemRating() {
+export default function ItemRating(): React.ReactElement {
   return (
     <div className="text-xs flex flex-col gap-2">
       <UsersReview rating={3} />
@@ -19,7 +19,7 @@ export default function ItemRating() {
   );
 }
 
-function UsersReview({ rating }: { rating: number }) {
+function UsersReview({ rating }: { rating: number }): React.ReactElement {
   const starComponentsArray: JSX.Element[] = [];
 
   for (let i = 0; i < 5; i++) {

@@ -1,13 +1,17 @@
-import React from "react";
-
-export default function CustomerServices() {
+export default function CustomerServices(): React.ReactElement {
   return (
     <div>
       <h3 className="font-bold">Customer Services</h3>
       <ul className="text-xs">
-        <li>Return Policy</li>
-        <li>Privacy Policy</li>
-        <li>Terms of Service</li>
+        <li className="hover:text-primary w-fit cursor-pointer">
+          Return Policy
+        </li>
+        <li className="hover:text-primary w-fit cursor-pointer">
+          Privacy Policy
+        </li>
+        <li className="hover:text-primary w-fit cursor-pointer">
+          Terms of Service
+        </li>
       </ul>
     </div>
   );

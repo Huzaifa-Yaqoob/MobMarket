@@ -1,5 +1,3 @@
-// "use client";
-
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -11,7 +9,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export default function RegisterModal() {
+export default function RegisterModal(): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger asChild className="text-primary">

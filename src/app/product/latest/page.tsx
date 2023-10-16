@@ -27,7 +27,7 @@ const cardsContent: CardContent[] | [] = [
   },
 ];
 
-export default function Latest() {
+export default function Latest(): React.ReactElement {
   return (
     <div>
       <CardRoom cardsContent={cardsContent} />

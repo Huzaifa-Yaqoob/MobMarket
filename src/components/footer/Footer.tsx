@@ -3,9 +3,8 @@ import CustomerServices from "./CustomerServices";
 import SocialLinks from "./SocialLinks";
 import ContactInformation from "./ContactInformation";
 import PaymentMethods from "./PaymentMethods";
-import BuyModel from "../product/page/BuyModel";
 
-export default function Footer() {
+export default function Footer(): React.ReactElement {
   return (
     <footer className="my-container bg-secondary text-secondary-foreground text-sm space-y-4">
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

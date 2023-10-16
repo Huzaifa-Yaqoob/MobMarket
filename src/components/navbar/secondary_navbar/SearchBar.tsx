@@ -1,8 +1,9 @@
 "use client";
+
 import { useState } from "react";
 import { Search, X } from "lucide-react";
 
-export function SearchBar() {
+export function SearchBar(): React.ReactElement {
   const [searchValue, setSearchValue] = useState("");
 
   const searchSubmitHandler = () => {

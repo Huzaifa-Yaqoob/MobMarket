@@ -1,6 +1,10 @@
 const statusValues = ["Completed", "Ongoing", "Delayed", "Cancelled"];
 
-export default function Status({ status }: { status: string }) {
+export default function Status({
+  status,
+}: {
+  status: string;
+}): React.ReactElement {
   if (status === statusValues[0]) {
     return (
       <div className="bg-success text-destructive-foreground w-fit p-1 rounded font-bold">

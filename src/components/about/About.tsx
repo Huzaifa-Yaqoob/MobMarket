@@ -1,18 +1,4 @@
-"use client";
-import { useState, useCallback } from "react";
-import { Map } from "react-map-gl";
-
-const containerStyle = {
-  width: "400px",
-  height: "400px",
-};
-
-const center = {
-  lat: -3.745,
-  lng: -38.523,
-};
-
-export default function About() {
+export default function About(): React.ReactElement {
   return (
     <div className="space-y-4">
       <h1 className="text-2xl font-bold text-primary border-l-8 border-primary pl-2">

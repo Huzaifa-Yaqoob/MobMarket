@@ -1,11 +1,6 @@
 "use client";
-import {
-  Pagination,
-  Autoplay,
-  A11y,
-  Mousewheel,
-  Keyboard,
-} from "swiper/modules";
+
+import { Pagination, Autoplay, A11y, Keyboard } from "swiper/modules";
 import Image from "next/image";
 
 // Import Swiper styles
@@ -16,7 +11,7 @@ import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-export default function Banner() {
+export default function Banner(): React.ReactElement {
   return (
     <Swiper
       modules={[Pagination, A11y, Autoplay, Keyboard]}

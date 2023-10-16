@@ -27,7 +27,7 @@ const cardsContent: CardContent[] | [] = [
   },
 ];
 
-export default function Filter() {
+export default function Filter(): React.ReactElement {
   return (
     <div>
       <CardRoom cardsContent={cardsContent} />

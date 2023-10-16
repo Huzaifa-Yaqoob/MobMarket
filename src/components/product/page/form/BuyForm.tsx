@@ -1,4 +1,6 @@
 "use client";
+
+import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -18,22 +20,27 @@ import UserLocation from "./UserLocation";
 import useGeoNavigator from "@/hooks/useGeoNavigator";
 import MapToGoogleMap from "@/components/map/MapToGoogleMap";
 
-export default function BuyForm() {
+export default function BuyForm({ id }: { id: string }): React.ReactElement {
   const { isLoading, error, geoLocation } = useGeoNavigator();
   const form = useForm<z.infer<typeof orderFormSchema>>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
       username: "",
-      phone: "",
+      phoneNumber: "",
       geoLocation: { lat: 0, lng: 0 },
+      productID: id,
+      variant: "",
     },
   });
 
-  if (!isLoading) {
-    if (error !== "") {
-      form.setValue("geoLocation", geoLocation);
+  useEffect(() => {
+    form.setValue("bill", 1000);
+    if (!isLoading) {
+      if (error === "") {
+        form.setValue("geoLocation", geoLocation);
+      }
     }
-  }
+  }, []);
 
   function onSubmit(values: z.infer<typeof orderFormSchema>) {
     // Do something with the form values.
@@ -62,7 +69,7 @@ export default function BuyForm() {
         />
         <FormField
           control={form.control}
-          name="phone"
+          name="phoneNumber"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Phone :</FormLabel>
@@ -86,14 +93,16 @@ export default function BuyForm() {
                   geoLocation={geoLocation}
                 />
               </FormControl>
-              <FormDescription className="flex justify-between items-center">
-                You will get your product on your Address
+              <div className="flex justify-between items-center">
+                <FormDescription>
+                  You will get your product on your Address.
+                </FormDescription>
                 <MapToGoogleMap
                   geoLocation={geoLocation}
                   error={error}
                   isLoading={isLoading}
                 />
-              </FormDescription>
+              </div>
               <FormMessage />
             </FormItem>
           )}

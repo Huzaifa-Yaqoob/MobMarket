@@ -1,4 +1,3 @@
-"use client";
 import HorizontalProductCard from "../card/HorizontalProductCard";
 
 const cardsContent: CardContent[] = [
@@ -23,7 +22,7 @@ const cardsContent: CardContent[] = [
   },
 ];
 
-export default function ProductCardList() {
+export default function ProductCardList(): React.ReactElement {
   return (
     <div className="flex flex-col gap-2 overflow-auto h-full">
       <HorizontalProductCard cardContent={cardsContent[0]} />

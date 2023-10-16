@@ -86,6 +86,16 @@
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
 .contact_background {
   background-image: url("/backgroundsvg/contact.svg");
   background-repeat: no-repeat;

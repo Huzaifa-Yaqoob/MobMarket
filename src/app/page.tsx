@@ -33,7 +33,7 @@ const cardSlabInfo2: Link = {
   href: "popular/",
 };
 
-export default function HomePage() {
+export default function HomePage(): React.ReactElement {
   return (
     <>
       <article className="mt-4 sm:mx-20 md:mx-40">

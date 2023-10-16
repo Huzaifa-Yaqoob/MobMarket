@@ -1,6 +1,5 @@
 import { SlidersHorizontal } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
-import { Button } from "@/components/ui/button";
 import {
   Sheet,
   SheetContent,
@@ -25,7 +24,7 @@ const ramRange = [2, 16];
 
 const priceRange = [10000, 1000000];
 
-export default function FilterSheet() {
+export default function FilterSheet(): React.ReactElement {
   return (
     <Sheet>
       <SheetTrigger asChild className="cursor-pointer">

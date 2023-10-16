@@ -22,7 +22,7 @@ const brands: SelectItem[] = [
   { _id: "abc", label: "Xiomi", value: "" },
 ];
 
-export default function NavBar() {
+export default function NavBar(): React.ReactElement {
   return (
     <nav className="top-0 sticky shadow-lg z-10">
       <section className="flex justify-between items-center bg-background my-container top-0 sticky shadow z-10">

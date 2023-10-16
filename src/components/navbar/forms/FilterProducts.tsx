@@ -1,4 +1,5 @@
 "use client";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -19,15 +20,17 @@ import BrandSelect from "./filter_components/BrandSelect";
 import PriceRange from "./filter_components/PriceRange";
 import RAMRange from "./filter_components/RAMRange";
 
+interface FilterProductProps {
+  option: SelectItem[];
+  ramRange: number[];
+  priceRange: number[];
+}
+
 export default function FilterProducts({
   option,
   ramRange,
   priceRange,
-}: {
-  option: SelectItem[];
-  ramRange: number[];
-  priceRange: number[];
-}) {
+}: FilterProductProps): React.ReactElement {
   const form = useForm<z.infer<typeof filterProductsFormSchema>>({
     resolver: zodResolver(filterProductsFormSchema),
     defaultValues: {

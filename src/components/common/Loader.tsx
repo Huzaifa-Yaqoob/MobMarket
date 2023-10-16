@@ -1,6 +1,6 @@
 import { Rings } from "react-loader-spinner";
 
-export default function Loader() {
+export default function Loader(): React.ReactElement {
   return (
     <div className="h-full w-full flex flex-col items-center gap-2 justify-center">
       <div>

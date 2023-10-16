@@ -1,19 +1,14 @@
 "use client";
-import L from "leaflet";
-import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
+
+import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import CustomMarker from "./CustomMarker";
 
 export default function Map({
   geoLocation,
 }: {
-  geoLocation: { lat: number; lng: number };
-}) {
-  const pinIcon = L.icon({
-    iconUrl: "/assets/MobMarker.png",
-    iconSize: [30, 38],
-  });
-
-  console.log(geoLocation);
+  geoLocation: GeoLocation;
+}): React.ReactElement {
   return (
     <div className="h-full">
       <MapContainer center={geoLocation} zoom={15} className="h-full w-full">
@@ -21,9 +16,7 @@ export default function Map({
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
-        <Marker position={geoLocation} icon={pinIcon}>
-          <Popup>A sample popup for the marker.</Popup>
-        </Marker>
+        <CustomMarker geoLocation={geoLocation} />
       </MapContainer>
     </div>
   );

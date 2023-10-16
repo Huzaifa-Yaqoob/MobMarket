@@ -1,7 +1,6 @@
 import Image from "next/image";
-import { Coins } from "lucide-react";
 
-export default function PaymentMethods() {
+export default function PaymentMethods(): React.ReactElement {
   return (
     <div className="flex flex-col gap-2 items-center">
       <div className="flex items-center gap-1">
