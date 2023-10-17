@@ -1,4 +1,4 @@
-import { ShoppingBasket } from "lucide-react";
+import { BaggageClaim } from "lucide-react";
 import Link from "next/link";
 import CartSheet from "./CartSheet";
 import { SearchBar } from "./SearchBar";
@@ -14,7 +14,7 @@ export default function SecondaryNavbar(): React.ReactElement {
         <FilterSheet />
         <CartSheet />
         <Link href="/order">
-          <ShoppingBasket />
+          <BaggageClaim />
         </Link>
       </div>
     </div>
