@@ -49,7 +49,7 @@ export default function Sales() {
           Total sales are <span className="text-primary ml-1">100.</span>
         </div>
         <div>
-          Ongoing orders are <span className="text-primary ml-1">100.</span>
+          Ongoing sales are <span className="text-primary ml-1">100.</span>
         </div>
       </CardFooter>
     </Card>

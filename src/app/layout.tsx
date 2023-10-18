@@ -20,7 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} flex flex-col min-h-screen`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <NavBar />
           <main className="flex-grow">{children}</main>
           <Footer />

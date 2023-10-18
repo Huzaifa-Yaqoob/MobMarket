@@ -56,7 +56,7 @@ export default function Profile(): React.ReactElement {
         </div>
         <Separator />
         <Button
-          className="hover:bg-danger text-danger hover:text-foreground border-danger hover:border-background w-fit"
+          className="hover:bg-destructive text-destructive hover:text-foreground border-destructive hover:border-background w-fit"
           variant="outline"
           onClick={logOutHandler}
         >

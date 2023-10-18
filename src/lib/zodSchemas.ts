@@ -1,5 +1,6 @@
 import * as z from "zod";
 
+// User related Schemas
 export const editUsernameFormSchema = z.object({
   username: z.string().min(3).max(50),
 });
@@ -35,4 +36,93 @@ export const orderFormSchema = z.object({
 
 export const editReviewFormSchema = z.object({
   rating: z.coerce.number(),
+});
+
+// Admin related schemas
+export const addProductFormSchema = z.object({
+  picture: z
+    .union([z.array(z.instanceof(File)), z.null()])
+    .superRefine((val, ctx) => {
+      if (val === null) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Image is required",
+        });
+      }
+    }),
+  name: z.string().nonempty().max(50),
+  brand: z
+    .union([
+      z.object({
+        value: z.string().nonempty(),
+        label: z.string().nonempty(),
+      }),
+      z.null(),
+    ])
+    .superRefine((val, ctx) => {
+      if (val === null) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Brand cannot be empty",
+        });
+      }
+    }),
+  yearReleased: z
+    .union([
+      z.object({
+        value: z.number(),
+        label: z.number(),
+      }),
+      z.null(),
+    ])
+    .superRefine((val, ctx) => {
+      if (val === null) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Brand cannot be empty",
+        });
+      }
+    }),
+  ram: z.coerce
+    .number()
+    .nonnegative()
+    .superRefine((val, ctx) => {
+      if (val === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid Ram",
+        });
+      }
+    }),
+  storage: z.coerce
+    .number()
+    .nonnegative()
+    .superRefine((val, ctx) => {
+      if (val === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid storage",
+        });
+      }
+    }),
+  battery: z.coerce
+    .number()
+    .nonnegative()
+    .superRefine((val, ctx) => {
+      if (val === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid battery",
+        });
+      }
+    }),
+  moreInfo: z.string().nonempty().max(500),
+  variant: z
+    .array(
+      z.object({
+        name: z.string().nonempty().max(50),
+        picture: z.any(),
+      })
+    )
+    .nonempty(),
 });

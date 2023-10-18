@@ -67,7 +67,7 @@ export default function EditProfilePic(): React.ReactElement {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <span className="flex gap-2 items-center font-thin text-sm cursor-pointer text-info hover:underline underline-info">
+        <span className="flex gap-2 items-center text-sm cursor-pointer text-info hover:underline underline-info">
           edit profile picture <Pencil className="mr-2 h-4 w-4" />
         </span>
       </DialogTrigger>
@@ -75,7 +75,7 @@ export default function EditProfilePic(): React.ReactElement {
         <DialogHeader>
           <div className="flex flex-col align-middle justify-center items-center gap-2">
             <Avatar className="w-20 h-20">
-              <AvatarImage src={fileData.filePreview} alt="@shadcn" />
+              <AvatarImage src={fileData.filePreview} alt="avatar" />
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <form
@@ -93,19 +93,19 @@ export default function EditProfilePic(): React.ReactElement {
                 {({ getRootProps, getInputProps }) => (
                   <div
                     {...getRootProps({ className: "dropzone" })}
-                    className={`flex flex-col items-center justify-center align-middle border-[0.15rem] border-dashed rounded w-full py-2 
+                    className={`flex flex-col items-center justify-center align-middle border-2 border-dashed rounded w-full py-2 
                     ${
                       fileData.errorMessage === ""
-                        ? "border-primary text-primary"
+                        ? "border-input text-muted-foreground focus:border-ring"
                         : "border-destructive text-destructive"
                     } `}
                   >
                     <input {...getInputProps()} />
                     <PlusCircle />
                     {fileData.errorMessage === "" ? (
-                      <p>{fileData.message}</p>
+                      <p className="text-center">{fileData.message}</p>
                     ) : (
-                      <p>{fileData.errorMessage}</p>
+                      <p className="text-center">{fileData.errorMessage}</p>
                     )}
                   </div>
                 )}

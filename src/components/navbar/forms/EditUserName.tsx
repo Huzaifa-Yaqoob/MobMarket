@@ -38,7 +38,7 @@ export default function EditUserName(): React.ReactElement {
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <span className="flex gap-2 items-center font-thin text-sm cursor-pointer text-info hover:underline underline-info">
+        <span className="flex gap-2 items-center font-normal text-sm cursor-pointer text-info hover:underline underline-info">
           edit username <Pencil className="mr-2 h-4 w-4" />
         </span>
       </DialogTrigger>
