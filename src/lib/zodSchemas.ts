@@ -51,6 +51,17 @@ export const addProductFormSchema = z.object({
       }
     }),
   name: z.string().nonempty().max(50),
+  price: z.coerce
+    .number()
+    .nonnegative()
+    .superRefine((val, ctx) => {
+      if (val === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid storage",
+        });
+      }
+    }),
   brand: z
     .union([
       z.object({
@@ -116,13 +127,44 @@ export const addProductFormSchema = z.object({
         });
       }
     }),
+  stock: z.coerce
+    .number()
+    .nonnegative()
+    .superRefine((val, ctx) => {
+      if (val === 0) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "Invalid battery",
+        });
+      }
+    }),
   moreInfo: z.string().nonempty().max(500),
-  variant: z
-    .array(
-      z.object({
-        name: z.string().nonempty().max(50),
-        picture: z.any(),
-      })
-    )
-    .nonempty(),
+  variant: z.any(),
+  // variant: z
+  //   .union([
+  //     z.array(
+  //       z.object({
+  //         name: z.string().nonempty().max(50),
+  //         picture: z
+  //           .union([z.array(z.instanceof(File)), z.null()])
+  //           .superRefine((val, ctx) => {
+  //             if (val === null) {
+  //               ctx.addIssue({
+  //                 code: z.ZodIssueCode.custom,
+  //                 message: "Image is required.",
+  //               });
+  //             }
+  //           }),
+  //       })
+  //     ),
+  //     z.null(),
+  //   ])
+  //   .superRefine((val, ctx) => {
+  //     if (val === null) {
+  //       ctx.addIssue({
+  //         code: z.ZodIssueCode.custom,
+  //         message: "At least one variant is required.",
+  //       });
+  //     }
+  //   }),
 });

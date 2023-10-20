@@ -45,3 +45,10 @@ interface TImage {
   url: string;
   alt: string;
 }
+
+interface FileData {
+  file: File[] | null;
+  filePreview: string;
+  message: string;
+  errorMessage: string;
+}

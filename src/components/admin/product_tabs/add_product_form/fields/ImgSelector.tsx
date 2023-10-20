@@ -1,51 +1,30 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import * as z from "zod";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { PlusCircle, XCircle } from "lucide-react";
 import Image from "next/image";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { UseFormSetValue } from "react-hook-form";
-import { addProductFormSchema } from "@/lib/zodSchemas";
 
-interface MainPicProps {
-  field: {
-    name: string;
-    value: z.infer<typeof addProductFormSchema>["picture"];
+interface ImgSelectorProps {
+  acceptedType: {
+    [key: string]: string[];
   };
-  setValue: UseFormSetValue<z.infer<typeof addProductFormSchema>>;
+  state: FileData;
+  update: (fileData: FileData) => void;
 }
 
-export default function MainPic({ field, setValue }: MainPicProps) {
-  const [fileData, setFileData] = useState<FileData>({
-    file: field.value,
-    filePreview: "",
-    message: "Drag 'n' drop image here, or click to select image",
-    errorMessage: "",
-  });
-
-  useEffect(() => {
-    setValue("picture", fileData.file);
-  }, [fileData]);
-
-  console.log(fileData.file, field.value);
-
-  const onRejection = (file: FileRejection[]) => {
-    setFileData({
-      file: field.value,
-      filePreview: "/products/Apple-iPhone-11-PNG-Image.png",
-      message: "Drag 'n' drop image here, or click to select image",
-      errorMessage: file[0].errors[0].message + ". Try Again",
-    });
-  };
-
+export default function ImgSelector({
+  acceptedType,
+  state,
+  update,
+}: ImgSelectorProps): React.ReactElement {
   const onAccepted = (files: File[]) => {
     const file = files[0];
     const selectedFile = Object.assign(file, {
       preview: URL.createObjectURL(file),
     });
-    setFileData({
+    update({
       file: files,
       filePreview: selectedFile.preview,
       message: "Selected image is " + selectedFile.name,
@@ -53,10 +32,19 @@ export default function MainPic({ field, setValue }: MainPicProps) {
     });
   };
 
-  const onError = (error: Error) => {
-    setFileData({
+  const onRejection = (file: FileRejection[]) => {
+    update({
       file: null,
       filePreview: "/products/Apple-iPhone-11-PNG-Image.png",
+      message: "Drag 'n' drop image here, or click to select image",
+      errorMessage: file[0].errors[0].message + ". Try Again",
+    });
+  };
+
+  const onError = (error: Error) => {
+    update({
+      file: null,
+      filePreview: "",
       message: "",
       errorMessage: "SomeThing went wrong",
     });
@@ -70,13 +58,13 @@ export default function MainPic({ field, setValue }: MainPicProps) {
         onDropAccepted={onAccepted}
         onDropRejected={onRejection}
         onError={onError}
-        accept={{ "image/*": [".png"] }}
+        accept={acceptedType}
       >
         {({ getRootProps, getInputProps }) => (
           <div
             {...getRootProps({ className: "dropzone" })}
             className={`flex flex-col items-center justify-center align-middle border-2 border-dashed focus:outline-none ring-offset-background rounded w-full py-2 focus:ring-ring focus:ring-2 focus:ring-offset-2 cursor-default ${
-              fileData.errorMessage === ""
+              state.errorMessage === ""
                 ? "border-input text-muted-foreground"
                 : "border-destructive text-destructive"
             } `}
@@ -84,12 +72,12 @@ export default function MainPic({ field, setValue }: MainPicProps) {
             <input {...getInputProps()} onChange={() => {}} />
             <div className="flex gap-2">
               <PlusCircle />
-              {fileData.file !== null ? (
+              {state.file !== null ? (
                 <XCircle
                   className="text-destructive"
                   onClick={(e) => {
                     e.stopPropagation();
-                    setFileData({
+                    update({
                       file: null,
                       filePreview: "",
                       message:
@@ -102,23 +90,23 @@ export default function MainPic({ field, setValue }: MainPicProps) {
                 ""
               )}
             </div>
-            {fileData.errorMessage === "" ? (
-              <p className="text-center">{fileData.message}</p>
+            {state.errorMessage === "" ? (
+              <p className="text-center">{state.message}</p>
             ) : (
-              <p className="text-center">{fileData.errorMessage}</p>
+              <p className="text-center">{state.errorMessage}</p>
             )}
           </div>
         )}
       </Dropzone>
       <div className="w-full">
         <AspectRatio ratio={4 / 4} className="border border-border rounded">
-          {fileData.filePreview === "" ? (
-            <div className="h-full text-lg text-center flex justify-center items-center">
+          {state.filePreview === "" ? (
+            <div className="h-full text-muted-foreground text-center flex justify-center items-center">
               Selected image will show here
             </div>
           ) : (
             <Image
-              src={fileData.filePreview}
+              src={state.filePreview}
               alt={"product"}
               fill
               loading="lazy"

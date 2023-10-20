@@ -1,8 +1,9 @@
 import { create } from "zustand";
 
-export type OrderState = { image: TImage; variantName: string };
+// Order Store
+type OrderState = { image: TImage; variantName: string };
 
-export type OrderAction = {
+type OrderAction = {
   updateImage: (image: TImage) => void;
   updateVariantName: (variantName: string) => void;
 };
@@ -19,3 +20,28 @@ export const useOrderStore = create<OrderState & OrderAction>((set) => ({
   updateImage: (image) => set(() => ({ image: image })),
   updateVariantName: (variantName) => set(() => ({ variantName: variantName })),
 }));
+
+// mainImg store
+type MFileData = {
+  fileData: FileData;
+};
+
+type FileAction = {
+  updateFileData: (fileData: FileData) => void;
+};
+export const useFileDataStore = create<MFileData & FileAction>((set) => ({
+  fileData: {
+    file: null,
+    filePreview: "",
+    message: "Drag 'n' drop image here, or click to select image",
+    errorMessage: "",
+  },
+  updateFileData: (fileData) => set(() => ({ fileData: fileData })),
+}));
+
+// export const useVariantImgStore = create<ImgState & ImgAction>((set) => ({
+//   mainImg: null,
+//   updateMainImg: (mainImg) => set(() => ({ mainImg: mainImg })),
+// }));
+
+// export const variantSetStore = create<>(() => ({}));

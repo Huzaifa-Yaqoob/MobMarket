@@ -12,13 +12,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-interface FileData {
-  file: File[] | null;
-  filePreview: string;
-  message: string;
-  errorMessage: string;
-}
-
 export default function EditProfilePic(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [fileData, setFileData] = useState<FileData>({
