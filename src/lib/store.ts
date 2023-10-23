@@ -1,3 +1,4 @@
+import { Variable } from "lucide-react";
 import { create } from "zustand";
 
 // Order Store
@@ -21,27 +22,93 @@ export const useOrderStore = create<OrderState & OrderAction>((set) => ({
   updateVariantName: (variantName) => set(() => ({ variantName: variantName })),
 }));
 
-// mainImg store
-type MFileData = {
+// Store for main picture of the product
+type MFileDataState = {
   fileData: FileData;
 };
 
 type FileAction = {
   updateFileData: (fileData: FileData) => void;
+  resetFileData: () => void;
 };
-export const useFileDataStore = create<MFileData & FileAction>((set) => ({
-  fileData: {
-    file: null,
-    filePreview: "",
-    message: "Drag 'n' drop image here, or click to select image",
-    errorMessage: "",
-  },
+
+const initialFileData = {
+  file: null,
+  filePreview: "",
+  message: "Drag 'n' drop image here, or click to select image",
+  errorMessage: "",
+};
+
+export const useFileDataStore = create<MFileDataState & FileAction>((set) => ({
+  fileData: initialFileData,
   updateFileData: (fileData) => set(() => ({ fileData: fileData })),
+
+  resetFileData: () => set(() => ({ fileData: initialFileData })),
 }));
 
-// export const useVariantImgStore = create<ImgState & ImgAction>((set) => ({
-//   mainImg: null,
-//   updateMainImg: (mainImg) => set(() => ({ mainImg: mainImg })),
-// }));
+// Store for add different variants of phone
+interface Variant {
+  name: string;
+  fileData: FileData;
+}
 
-// export const variantSetStore = create<>(() => ({}));
+type VariantSetData = {
+  variants: Variant[];
+};
+
+type VariantsSetAction = {
+  updateName: (index: number, name: string) => void;
+  updateFileData: (index: number, fileData: FileData) => void;
+  addVariants: (variant: Variant) => void;
+  removeVariants: (index: number) => void;
+  resetVariants: () => void;
+};
+
+const initialVariants = {
+  name: "",
+  fileData: initialFileData,
+};
+
+export const useVariantSetStore = create<VariantSetData & VariantsSetAction>(
+  (set) => ({
+    variants: [initialVariants],
+
+    updateName: (index, variantName) =>
+      set((state) => {
+        const updatedVariants = [...state.variants];
+        updatedVariants[index] = {
+          ...updatedVariants[index],
+          name: variantName,
+        };
+        return { variants: updatedVariants };
+      }),
+
+    updateFileData: (index, fileData) =>
+      set((state) => {
+        const updatedVariants = [...state.variants];
+        updatedVariants[index] = {
+          ...updatedVariants[index],
+          fileData: fileData,
+        };
+        return { variants: updatedVariants };
+      }),
+
+    addVariants: (variant) =>
+      set((state) => ({
+        variants: [...state.variants, variant],
+      })),
+
+    removeVariants: (index) =>
+      set((state) => ({
+        variants:
+          state.variants.length === 1
+            ? state.variants
+            : state.variants.filter((variant, i) => i !== index),
+      })),
+
+    resetVariants: () =>
+      set(() => ({
+        variants: [initialVariants],
+      })),
+  })
+);

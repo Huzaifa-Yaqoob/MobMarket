@@ -74,7 +74,7 @@ export default function ImgSelector({
               <PlusCircle />
               {state.file !== null ? (
                 <XCircle
-                  className="text-destructive"
+                  className="text-destructive text-sm"
                   onClick={(e) => {
                     e.stopPropagation();
                     update({
@@ -91,14 +91,14 @@ export default function ImgSelector({
               )}
             </div>
             {state.errorMessage === "" ? (
-              <p className="text-center">{state.message}</p>
+              <p className="text-center text-sm">{state.message}</p>
             ) : (
-              <p className="text-center">{state.errorMessage}</p>
+              <p className="text-center text-sm">{state.errorMessage}</p>
             )}
           </div>
         )}
       </Dropzone>
-      <div className="w-full">
+      <div className="w-full text-sm">
         <AspectRatio ratio={4 / 4} className="border border-border rounded">
           {state.filePreview === "" ? (
             <div className="h-full text-muted-foreground text-center flex justify-center items-center">

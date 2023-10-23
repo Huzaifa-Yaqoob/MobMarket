@@ -18,20 +18,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import BrandSelect from "./fields/BrandSelect";
-import MainPic from "./fields/MainPic";
 import ImgSelector from "./fields/ImgSelector";
 import VariantSet from "./fields/VariantSet";
 import YearSelect from "./fields/YearSelect";
-import { useFileDataStore } from "@/lib/store";
+import { useFileDataStore, useVariantSetStore } from "@/lib/store";
 
-const MAX = 500;
+// Constants
+const MAX_WORDS_FOR_DETAILS = 500;
+const ACCEPTED_TYPES_FOR_PRODUCT_IMAGE = { "image/*": [".png"] };
 
-export default function AddProductForm() {
-  const [fileData, updateFileData] = useFileDataStore((state) => [
-    state.fileData,
-    state.updateFileData,
-  ]);
+export default function AddProductForm(): React.ReactElement {
   const [wordsCount, setWordsCount] = useState(0);
+  const [fileData, updateFileData, resetFileData] = useFileDataStore(
+    (state) => [state.fileData, state.updateFileData, state.resetFileData]
+  );
+  const [variantss, resetVariantss] = useVariantSetStore((state) => [
+    state.variants,
+    state.resetVariants,
+  ]);
   const form = useForm<z.infer<typeof addProductFormSchema>>({
     resolver: zodResolver(addProductFormSchema),
     defaultValues: {
@@ -54,7 +58,14 @@ export default function AddProductForm() {
 
   useEffect(() => {
     form.setValue("picture", fileData.file);
-  }, [fileData]);
+    form.setValue(
+      "variant",
+      variantss.map(({ name, fileData }) => ({
+        picture: fileData.file,
+        name: name,
+      }))
+    );
+  }, [fileData, variantss]);
 
   function onSubmit(values: z.infer<typeof addProductFormSchema>) {
     // Do something with the form values.
@@ -78,11 +89,10 @@ export default function AddProductForm() {
                 <FormLabel>Picture:</FormLabel>
                 <FormControl>
                   <ImgSelector
-                    acceptedType={{ "image/*": [".png"] }}
+                    acceptedType={ACCEPTED_TYPES_FOR_PRODUCT_IMAGE}
                     state={fileData}
                     update={updateFileData}
                   />
-                  {/* <MainPic field={field} setValue={form.setValue} /> */}
                 </FormControl>
                 <FormDescription>
                   This is the main image of the product.(only PNGs are allowed)
@@ -233,7 +243,7 @@ export default function AddProductForm() {
                     placeholder="Type here..."
                     {...field}
                     onChange={(e) => {
-                      if (e.target.value.length < MAX) {
+                      if (e.target.value.length < MAX_WORDS_FOR_DETAILS) {
                         field.onChange(e);
                       }
                       setWordsCount(e.target.value.length);
@@ -243,9 +253,13 @@ export default function AddProductForm() {
                 <FormDescription className="flex justify-between items-center">
                   Write more about this product.(extra spaces will be ignored)
                   <span
-                    className={wordsCount === MAX ? "text-destructive" : ""}
+                    className={
+                      wordsCount === MAX_WORDS_FOR_DETAILS
+                        ? "text-destructive"
+                        : ""
+                    }
                   >
-                    {wordsCount}/{MAX}
+                    {wordsCount}/{MAX_WORDS_FOR_DETAILS}
                   </span>
                 </FormDescription>
                 <FormMessage />
@@ -262,9 +276,12 @@ export default function AddProductForm() {
                 <FormLabel className="text-lg font-bold">
                   Set Variant:
                 </FormLabel>
-                <FormControl>{/* <VariantSet field={field} /> */}</FormControl>
+                <FormControl>
+                  <VariantSet acceptedType={ACCEPTED_TYPES_FOR_PRODUCT_IMAGE} />
+                </FormControl>
                 <FormDescription>
-                  Set different variant of this product
+                  Set different variant of this product.(At least one is
+                  required)
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -281,12 +298,8 @@ export default function AddProductForm() {
             className="w-full"
             onClick={() => {
               form.reset();
-              updateFileData({
-                file: null,
-                filePreview: "",
-                message: "Drag 'n' drop image here, or click to select image",
-                errorMessage: "",
-              });
+              resetVariantss();
+              resetFileData();
             }}
           >
             Reset

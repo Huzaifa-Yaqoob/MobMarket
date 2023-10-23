@@ -139,32 +139,41 @@ export const addProductFormSchema = z.object({
       }
     }),
   moreInfo: z.string().nonempty().max(500),
-  variant: z.any(),
-  // variant: z
-  //   .union([
-  //     z.array(
-  //       z.object({
-  //         name: z.string().nonempty().max(50),
-  //         picture: z
-  //           .union([z.array(z.instanceof(File)), z.null()])
-  //           .superRefine((val, ctx) => {
-  //             if (val === null) {
-  //               ctx.addIssue({
-  //                 code: z.ZodIssueCode.custom,
-  //                 message: "Image is required.",
-  //               });
-  //             }
-  //           }),
-  //       })
-  //     ),
-  //     z.null(),
-  //   ])
-  //   .superRefine((val, ctx) => {
-  //     if (val === null) {
-  //       ctx.addIssue({
-  //         code: z.ZodIssueCode.custom,
-  //         message: "At least one variant is required.",
-  //       });
-  //     }
-  //   }),
+  variant: z
+    .union([
+      z.array(
+        z.object({
+          name: z.string(),
+          picture: z.union([z.array(z.instanceof(File)), z.null()]),
+        })
+      ),
+      z.null(),
+    ])
+    .superRefine((val, ctx) => {
+      if (val === null) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "At least one variant is required.",
+        });
+      } else if (val !== null) {
+        val.forEach((v, i) => {
+          if (v.name === "" && v.picture === null) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `Enter values at variant number ${i + 1}`,
+            });
+          } else if (v.name === "") {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `name is required at variant number ${i + 1}`,
+            });
+          } else if (v.picture === null) {
+            ctx.addIssue({
+              code: z.ZodIssueCode.custom,
+              message: `picture is required at variant number ${i + 1}`,
+            });
+          }
+        });
+      }
+    }),
 });

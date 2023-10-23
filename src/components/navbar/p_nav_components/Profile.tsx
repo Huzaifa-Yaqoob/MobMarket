@@ -55,11 +55,7 @@ export default function Profile(): React.ReactElement {
           </div>
         </div>
         <Separator />
-        <Button
-          className="hover:bg-destructive text-destructive hover:text-foreground border-destructive hover:border-background w-fit"
-          variant="outline"
-          onClick={logOutHandler}
-        >
+        <Button className="w-fit" variant="destructive" onClick={logOutHandler}>
           <LogOut className="mr-2 h-4 w-4" /> Log Out
         </Button>
       </DialogContent>
