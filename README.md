@@ -1,34 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Mobile Phone eCommerce Website Project
 
-## Getting Started
+## Project Description
 
-First, run the development server:
+This project is an eCommerce website where people can purchase mobile phones. It provides a user-friendly interface for browsing, selecting, and purchasing various mobile phone models. The website offers secure payment options and a seamless shopping experience for customers.
+
+## Packages Used
+
+- **axios** - v1.5.1
+- **class-variance-authority** - v0.7.0
+- **clsx** - v2.0.0
+- **cmdk** - v0.2.0
+- **eslint** - v8.48.0
+- **eslint-config-next** - v13.4.19
+- **leaflet** - v1.9.4
+- **lucide-react** - v0.274.0
+- **mongoose** - v7.5.0
+- **next** - v13.5.4
+- **next-auth** - v4.23.1
+- **next-themes** - v0.2.1
+- **postcss** - v8.4.29
+- **react** - v18.2.0
+- **react-dom** - v18.2.0
+- **react-dropzone** - v14.2.3
+- **react-hook-form** - v7.46.1
+- **react-leaflet** - v4.2.1
+- **react-loader-spinner** - v5.4.5
+- **react-select** - v5.7.5
+- **react-slider** - v2.0.6
+- **swiper** - v10.3.1
+- **tailwind-merge** - v1.14.0
+- **tailwindcss** - v3.3.3
+- **tailwindcss-animate** - v1.0.7
+- **typescript** - v5.2.2
+- **zod** - v3.22.2
+- **zustand** - v4.4.3
+
+## Installation Instructions
+
+- **Install All Packages**: First install the packages using the following command.
+
+```bash
+npm install
+```
+
+- **Start the Server**: Then start the server using the following command.
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

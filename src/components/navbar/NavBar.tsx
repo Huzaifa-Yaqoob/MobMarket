@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./p_nav_components/NavLinks";
-import RegisterModal from "./forms/RegisterModal";
+import RegisterModal from "./p_nav_components/RegisterModal";
 import Profile from "./p_nav_components/Profile";
 import ThemeModeToggler from "./p_nav_components/ThemeModeToggler";
 import NavSheet from "./p_nav_components/NavSheet";
@@ -38,8 +38,8 @@ export default function NavBar(): React.ReactElement {
           <div className="md:hidden">
             <NavSheet links={links} brands={brands} />
           </div>
-          <Profile />
-          {/* <RegisterModal /> */}
+          {/* <Profile /> */}
+          <RegisterModal />
         </div>
       </section>
       <section className="bg-accent text-accent-foreground my-container">

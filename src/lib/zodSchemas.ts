@@ -1,10 +1,38 @@
 import * as z from "zod";
+import { checkIfZero, checkIfNull } from "./checkersForZod";
 
 // User related Schemas
+
+// Schema for registering user
+export const registerUserFormSchema = z.object({
+  email: z.string().nonempty({ message: "email is required." }).email(),
+  username: z
+    .string()
+    .nonempty({ message: "username is required." })
+    .min(3, { message: "Username must be at least 3 characters." })
+    .max(50, { message: "Username must be less than 50 characters." }),
+  password: z
+    .string()
+    .nonempty({ message: "password is required." })
+    .min(8, { message: "Password must be at least 8 characters." })
+    .max(32, { message: "Password must be at most 32 characters." }),
+});
+
+export const logInUserFormSchema = z.object({
+  email: z.string().nonempty({ message: "email is required." }).email(),
+  password: z
+    .string()
+    .nonempty({ message: "password is required." })
+    .min(8, { message: "Password must be at least 8 characters." })
+    .max(32, { message: "Password must be at most 32 characters." }),
+});
+
+// Schema for validate username when editing the username
 export const editUsernameFormSchema = z.object({
   username: z.string().min(3).max(50),
 });
 
+// Schema for filtering the product while searching for products
 export const filterProductsFormSchema = z.object({
   brands: z
     .array(z.object({ label: z.string(), value: z.string(), _id: z.string() }))
@@ -13,6 +41,7 @@ export const filterProductsFormSchema = z.object({
   RAMRange: z.array(z.coerce.number()).max(2),
 });
 
+// Schema for creating order
 export const orderFormSchema = z.object({
   username: z.string().min(3).max(50),
   phoneNumber: z
@@ -39,29 +68,14 @@ export const editReviewFormSchema = z.object({
 });
 
 // Admin related schemas
+
+// Schema for validation of adding product details by admin
 export const addProductFormSchema = z.object({
   picture: z
     .union([z.array(z.instanceof(File)), z.null()])
-    .superRefine((val, ctx) => {
-      if (val === null) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Image is required",
-        });
-      }
-    }),
+    .superRefine(checkIfNull),
   name: z.string().nonempty().max(50),
-  price: z.coerce
-    .number()
-    .nonnegative()
-    .superRefine((val, ctx) => {
-      if (val === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Invalid storage",
-        });
-      }
-    }),
+  price: z.coerce.number().nonnegative().superRefine(checkIfZero),
   brand: z
     .union([
       z.object({
@@ -70,14 +84,7 @@ export const addProductFormSchema = z.object({
       }),
       z.null(),
     ])
-    .superRefine((val, ctx) => {
-      if (val === null) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Brand cannot be empty",
-        });
-      }
-    }),
+    .superRefine(checkIfNull),
   yearReleased: z
     .union([
       z.object({
@@ -86,58 +93,11 @@ export const addProductFormSchema = z.object({
       }),
       z.null(),
     ])
-    .superRefine((val, ctx) => {
-      if (val === null) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Brand cannot be empty",
-        });
-      }
-    }),
-  ram: z.coerce
-    .number()
-    .nonnegative()
-    .superRefine((val, ctx) => {
-      if (val === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Invalid Ram",
-        });
-      }
-    }),
-  storage: z.coerce
-    .number()
-    .nonnegative()
-    .superRefine((val, ctx) => {
-      if (val === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Invalid storage",
-        });
-      }
-    }),
-  battery: z.coerce
-    .number()
-    .nonnegative()
-    .superRefine((val, ctx) => {
-      if (val === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Invalid battery",
-        });
-      }
-    }),
-  stock: z.coerce
-    .number()
-    .nonnegative()
-    .superRefine((val, ctx) => {
-      if (val === 0) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "Invalid battery",
-        });
-      }
-    }),
+    .superRefine(checkIfNull),
+  ram: z.coerce.number().nonnegative().superRefine(checkIfZero),
+  storage: z.coerce.number().nonnegative().superRefine(checkIfZero),
+  battery: z.coerce.number().nonnegative().superRefine(checkIfZero),
+  stock: z.coerce.number().nonnegative().superRefine(checkIfZero),
   moreInfo: z.string().nonempty().max(500),
   variant: z
     .union([
@@ -149,6 +109,7 @@ export const addProductFormSchema = z.object({
       ),
       z.null(),
     ])
+    // refining the value if it`s null or if name or image of any  variant is null
     .superRefine((val, ctx) => {
       if (val === null) {
         ctx.addIssue({

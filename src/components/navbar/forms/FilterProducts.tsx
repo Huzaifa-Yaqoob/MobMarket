@@ -16,9 +16,9 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
-import BrandSelect from "./filter_components/BrandSelect";
-import PriceRange from "./filter_components/PriceRange";
-import RAMRange from "./filter_components/RAMRange";
+import BrandSelect from "./filter_fields/BrandSelect";
+import PriceRange from "./filter_fields/PriceRange";
+import RAMRange from "./filter_fields/RAMRange";
 
 interface FilterProductProps {
   option: SelectItem[];
