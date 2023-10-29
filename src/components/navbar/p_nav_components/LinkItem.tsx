@@ -19,8 +19,8 @@ export default function LinkItem({
             <NavigationMenuLink
               className={`py-2 px-4 rounded transition-colors ${
                 pathname === link.href
-                  ? "bg-primary text-primary-foreground"
-                  : "text-foreground"
+                  ? "bg-primary hover:bg-secondary"
+                  : "hover:bg-primary-foreground"
               }`}
             >
               {link.name}

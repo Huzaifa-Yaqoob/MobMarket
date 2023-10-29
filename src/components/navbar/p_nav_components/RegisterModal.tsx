@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,11 +16,24 @@ import LoginForm from "../forms/LoginForm";
 
 export default function RegisterModal(): React.ReactElement {
   const [activeLogInForm, setActiveLogInForm] = useState(true);
+  const [openDialog, setOpenDialog] = useState(true);
+  // const session = useSession();
+
+  // useEffect(() => {
+  //   if (session) {
+  //     setOpenDialog(false);
+  //   }
+  // }, [session]);
 
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Log In</Button>
+        <Button
+          variant={"outline"}
+          className="border-primary text-primary hover:text-primary"
+        >
+          Log In
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -28,7 +42,7 @@ export default function RegisterModal(): React.ReactElement {
           </DialogTitle>
         </DialogHeader>
         {activeLogInForm ? <LoginForm /> : <RegisterForm />}
-        <DialogFooter className="flex items-center gap-1 text-base">
+        <DialogFooter className="flex flex-row items-center gap-1 text-base">
           {activeLogInForm
             ? "Don`t have an account register"
             : "Already have an account log in "}
@@ -37,7 +51,7 @@ export default function RegisterModal(): React.ReactElement {
             className="p-0 text-base"
             onClick={() => setActiveLogInForm(!activeLogInForm)}
           >
-            here
+            here.
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { LogOut, Crown } from "lucide-react";
+import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Separator } from "../../ui/separator";
 import { Button } from "@/components/ui/button";
@@ -18,7 +19,10 @@ import {
 export default function Profile(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const { data: session } = useSession();
+
   const logOutHandler = () => {
+    signOut();
     setIsDialogOpen(false);
   };
 
@@ -48,9 +52,9 @@ export default function Profile(): React.ReactElement {
         </Link>
         <Separator />
         <div className="text-xl font-bold text-primary">
-          <div>huzaifayaqoob@gmail.com</div>
+          <div>{session?.user?.email}</div>
           <div className="flex justify-between">
-            M.Huzaifa
+            {session?.user?.name}
             <EditUserName />
           </div>
         </div>

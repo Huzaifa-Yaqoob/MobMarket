@@ -1,6 +1,6 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import Map from "@/components/map/Map";
-import Loader from "@/components/common/Loader";
+import RingsLoader from "@/components/common/RingsLoader";
 import Error from "@/components/common/Error";
 
 interface LocationFieldProps {
@@ -20,7 +20,7 @@ export default function UserLocation({
       className="rounded overflow-hidden border border-input"
     >
       {isLoading ? (
-        <Loader />
+        <RingsLoader />
       ) : error !== "" ? (
         <Error msg={error} />
       ) : (

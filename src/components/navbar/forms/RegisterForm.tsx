@@ -7,7 +7,6 @@ import { registerUserFormSchema } from "@/lib/zodSchemas";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,8 +14,11 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import useUserRegister from "@/hooks/useUserRegister";
+import ThreeDotsLoader from "@/components/common/ThreeDotsLoader";
 
 export default function RegisterForm() {
+  const { isLoading, error, registerUser } = useUserRegister();
   const form = useForm<z.infer<typeof registerUserFormSchema>>({
     resolver: zodResolver(registerUserFormSchema),
     defaultValues: {
@@ -26,11 +28,9 @@ export default function RegisterForm() {
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof registerUserFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof registerUserFormSchema>) {
+    const d = await registerUser(values);
+    console.log(d);
   }
 
   return (
@@ -75,7 +75,20 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Register</Button>
+        <div>{error === "" ? "" : error}</div>
+        <div className="flex items-center gap-4">
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? <ThreeDotsLoader /> : "Register"}
+          </Button>
+          <Button
+            type="button"
+            variant={"secondary"}
+            disabled={isLoading}
+            onClick={() => form.reset()}
+          >
+            Reset
+          </Button>
+        </div>
       </form>
     </Form>
   );

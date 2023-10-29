@@ -1,8 +1,13 @@
 "use client";
 
+import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 import * as z from "zod";
+import { LogIn } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
 import { logInUserFormSchema } from "@/lib/zodSchemas";
 import {
   Form,
@@ -16,6 +21,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 export default function LogInForm() {
+  const router = useRouter();
+  const [error, setError] = useState("");
   const form = useForm<z.infer<typeof logInUserFormSchema>>({
     resolver: zodResolver(logInUserFormSchema),
     defaultValues: {
@@ -24,16 +31,33 @@ export default function LogInForm() {
     },
   });
 
-  // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof logInUserFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof logInUserFormSchema>) {
+    setError("");
+    try {
+      const res = await signIn("credentials", {
+        ...values,
+        redirect: false,
+        callbackUrl: "/",
+      });
+      if (res?.error) {
+        setError(res.error);
+      }
+      if (res?.ok && res?.url) {
+        console.log(res.url);
+        router.refresh();
+      }
+    } catch (error) {
+      console.log(error);
+      setError("Invalid something");
+    }
   }
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-4 transition-all"
+      >
         <FormField
           control={form.control}
           name="email"
@@ -60,7 +84,26 @@ export default function LogInForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Log In</Button>
+        {error == "" ? (
+          ""
+        ) : (
+          <div className="text-destructive-foreground bg-destructive text-sm w-fit px-1 rounded-sm animate-jump animate-once">
+            {error}
+          </div>
+        )}
+        <div className="flex items-center gap-4">
+          <Button type="submit">
+            <LogIn className="mr-2 h-4 w-4" />
+            Log In
+          </Button>
+          <Button
+            type="button"
+            variant={"secondary"}
+            onClick={() => form.reset()}
+          >
+            Reset
+          </Button>
+        </div>
       </form>
     </Form>
   );

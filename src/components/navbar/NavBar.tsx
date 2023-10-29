@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import NavLinks from "./p_nav_components/NavLinks";
-import RegisterModal from "./p_nav_components/RegisterModal";
-import Profile from "./p_nav_components/Profile";
 import ThemeModeToggler from "./p_nav_components/ThemeModeToggler";
 import NavSheet from "./p_nav_components/NavSheet";
 import SecondaryNavbar from "./secondary_navbar/SecondaryNavbar";
+import RegisterModelOrProfile from "./p_nav_components/RegisterModelOrProfile";
 
 const links: Link[] = [
   { name: "Home", href: "/" },
@@ -38,8 +37,7 @@ export default function NavBar(): React.ReactElement {
           <div className="md:hidden">
             <NavSheet links={links} brands={brands} />
           </div>
-          {/* <Profile /> */}
-          <RegisterModal />
+          <RegisterModelOrProfile />
         </div>
       </section>
       <section className="bg-accent text-accent-foreground my-container">

@@ -5,7 +5,7 @@ type Sale = {
   saleEndTime: string;
 } | null;
 
-// Interface
+// Interface for every link
 interface Link {
   name: string;
   href: string;
@@ -35,17 +35,20 @@ interface CardContent {
   info: Info;
 }
 
+// this interface is required to react-leaflet map
 interface GeoLocation {
   lat: number;
   lng: number;
 }
 
+// interface for every image
 interface TImage {
   name: string;
   url: string;
   alt: string;
 }
 
+// interface for fileData for dropzone
 interface FileData {
   file: File[] | null;
   filePreview: string;
