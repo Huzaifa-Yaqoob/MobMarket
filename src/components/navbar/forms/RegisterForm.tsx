@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useUserRegister from "@/hooks/useUserRegister";
 import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
+import Error from "@/components/common/Error";
 
 export default function RegisterForm() {
   const { isLoading, error, registerUser } = useUserRegister();
@@ -74,7 +75,7 @@ export default function RegisterForm() {
             </FormItem>
           )}
         />
-        <div>{error === "" ? "" : error}</div>
+        <Error msg={error} />
         <div className="flex items-center gap-4">
           <ButtonWithLoadingState text="register" isLoading={isLoading} />
           <Button

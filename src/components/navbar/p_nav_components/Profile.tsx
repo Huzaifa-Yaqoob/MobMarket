@@ -56,7 +56,7 @@ export default function Profile(): React.ReactElement {
             }
           />
         </DialogHeader>
-        {session?.user?.role === "user" ? (
+        {session?.user?.role === "admin" ? (
           <Link
             href={"/admin"}
             onClick={() => setIsDialogOpen(false)}

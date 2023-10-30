@@ -7,6 +7,7 @@ import { LogIn } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
+import useUserLogIn from "@/hooks/useUserLogIn";
 import { logInUserFormSchema } from "@/lib/zodSchemas";
 import {
   Form,
@@ -19,11 +20,11 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Error from "@/components/common/Error";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 
 export default function LogInForm() {
   const router = useRouter();
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, error, logInUser } = useUserLogIn();
   const form = useForm<z.infer<typeof logInUserFormSchema>>({
     resolver: zodResolver(logInUserFormSchema),
     defaultValues: {
@@ -33,22 +34,9 @@ export default function LogInForm() {
   });
 
   async function onSubmit(values: z.infer<typeof logInUserFormSchema>) {
-    setError("");
-    setIsLoading(true);
-    try {
-      const res = await signIn("credentials", {
-        ...values,
-        redirect: false,
-      });
-      if (res?.error) {
-        setError(res.error);
-      }
-      if (res?.ok) {
-        router.refresh();
-      }
-    } catch (error) {
-      console.log(error, "while logging in");
-      setError("something`s wrong here! sorry ");
+    const ok = await logInUser(values);
+    if (ok) {
+      router.refresh();
     }
   }
 
@@ -86,16 +74,13 @@ export default function LogInForm() {
         />
         <Error msg={error} />
         <div className="flex items-center gap-4">
-          <Button type="submit">
-            <LogIn className="mr-2 h-4 w-4" />
-            Log In
-          </Button>
+          <ButtonWithLoadingState text="Log In" isLoading={isLoading} />
+
           <Button
             type="button"
             variant={"secondary"}
             onClick={() => {
               form.reset();
-              setError("");
             }}
           >
             Reset
