@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useUserRegister from "@/hooks/useUserRegister";
-import ButtonWithThreeDotsLoading from "@/components/common/ButtonWithThreeDotsLoading";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 
 export default function RegisterForm() {
   const { isLoading, error, registerUser } = useUserRegister();
@@ -76,10 +76,7 @@ export default function RegisterForm() {
         />
         <div>{error === "" ? "" : error}</div>
         <div className="flex items-center gap-4">
-          <ButtonWithThreeDotsLoading
-            text="register"
-            isLoading={isLoading}
-          ></ButtonWithThreeDotsLoading>
+          <ButtonWithLoadingState text="register" isLoading={isLoading} />
           <Button
             type="button"
             variant={"secondary"}

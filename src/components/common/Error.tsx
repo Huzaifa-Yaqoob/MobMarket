@@ -1,12 +1,13 @@
 import { AlertTriangle } from "lucide-react";
 
 export default function Error({ msg }: { msg: string }): React.ReactElement {
+  if (msg === "") {
+    return <></>;
+  }
   return (
-    <div className="h-full w-full grid place-content-center">
-      <div className="text-destructive flex flex-col items-center gap-2">
-        <AlertTriangle size={50} />
-        <div className="text-center text-sm">{msg}</div>
-      </div>
+    <div className="text-destructive-foreground bg-destructive text-sm w-fit px-1 rounded-sm animate-jump animate-once flex justify-center items-center">
+      <AlertTriangle className="mr-2 h-4 w-4" />
+      {msg}
     </div>
   );
 }

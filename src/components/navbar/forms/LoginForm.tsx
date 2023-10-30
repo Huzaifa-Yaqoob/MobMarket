@@ -18,10 +18,12 @@ import {
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import Error from "@/components/common/Error";
 
 export default function LogInForm() {
   const router = useRouter();
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof logInUserFormSchema>>({
     resolver: zodResolver(logInUserFormSchema),
     defaultValues: {
@@ -32,6 +34,7 @@ export default function LogInForm() {
 
   async function onSubmit(values: z.infer<typeof logInUserFormSchema>) {
     setError("");
+    setIsLoading(true);
     try {
       const res = await signIn("credentials", {
         ...values,
@@ -40,8 +43,7 @@ export default function LogInForm() {
       if (res?.error) {
         setError(res.error);
       }
-      if (res?.ok && res?.url) {
-        console.log(res.url);
+      if (res?.ok) {
         router.refresh();
       }
     } catch (error) {
@@ -82,13 +84,7 @@ export default function LogInForm() {
             </FormItem>
           )}
         />
-        {error == "" ? (
-          ""
-        ) : (
-          <div className="text-destructive-foreground bg-destructive text-sm w-fit px-1 rounded-sm animate-jump animate-once">
-            {error}
-          </div>
-        )}
+        <Error msg={error} />
         <div className="flex items-center gap-4">
           <Button type="submit">
             <LogIn className="mr-2 h-4 w-4" />

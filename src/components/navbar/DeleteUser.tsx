@@ -1,7 +1,11 @@
 "use client";
 
+import { signOut } from "next-auth/react";
 import { useState } from "react";
+import useDeleteUser from "@/hooks/useDeleteUser";
 import { Button } from "@/components/ui/button";
+import ButtonWithThreeDotsLoading from "../common/ButtonWithThreeDotsLoading";
+import ButtonWithLoadingState from "../common/ButtonWithLoadingState";
 import {
   Dialog,
   DialogContent,
@@ -12,8 +16,14 @@ import {
 } from "@/components/ui/dialog";
 
 export default function DeleteUser(): React.ReactElement {
+  const { isLoading, error, deleteUser } = useDeleteUser();
   const [open, setOpen] = useState(false);
-  const deleteAccountHandler = () => {};
+  const deleteAccountHandler = async () => {
+    const status = await deleteUser();
+    if (status === 200) {
+      signOut();
+    }
+  };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -49,13 +59,13 @@ export default function DeleteUser(): React.ReactElement {
           >
             Cancel
           </Button>
-          <Button
+          <ButtonWithLoadingState
             type="button"
-            variant={"destructive"}
+            text="OK"
+            variant="destructive"
+            isLoading={isLoading}
             onClick={deleteAccountHandler}
-          >
-            Ok
-          </Button>
+          />
         </DialogFooter>
       </DialogContent>
     </Dialog>

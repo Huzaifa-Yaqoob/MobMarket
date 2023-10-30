@@ -11,8 +11,8 @@ import useUpdateUsername from "@/hooks/useUpdateUsername";
 import { editUsernameFormSchema } from "@/lib/zodSchemas";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import ButtonWithThreeDotsLoading from "@/components/common/ButtonWithThreeDotsLoading";
 import Error from "@/components/common/Error";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 import {
   Form,
   FormControl,
@@ -82,7 +82,7 @@ export default function EditUserName({
                 </FormItem>
               )}
             />
-            <ButtonWithThreeDotsLoading
+            <ButtonWithLoadingState
               text="Change Username"
               isLoading={isLoading}
             />

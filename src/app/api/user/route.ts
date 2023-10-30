@@ -3,7 +3,6 @@ import { NextRequest, type NextResponse } from "next/server";
 import connectDb, { disConnectDB } from "@/database/connectDB";
 import User from "@/database/models/userModel";
 import { authOption } from "../auth/[...nextauth]/route";
-import { type UserModel } from "@/database/models/userModel";
 
 // edit user username
 export async function PUT(request: NextRequest, response: NextResponse) {
@@ -34,9 +33,11 @@ export async function PUT(request: NextRequest, response: NextResponse) {
 // delete user account
 export async function DELETE(request: NextRequest, response: NextResponse) {
   try {
-    const req = await request.json();
     await connectDb();
-    console.log("deleted");
+    const session = await getServerSession(authOption);
+    if (session?.user?.id) {
+      await User.findByIdAndDelete(session?.user?.id);
+    }
     return Response.json({ a: "a" });
   } catch (error) {
     return Response.json({ a: "a" });
