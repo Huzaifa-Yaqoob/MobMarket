@@ -1,20 +1,24 @@
 import { useState } from "react";
-import * as z from "zod";
-import { registerUserFormSchema } from "@/lib/zodSchemas";
-import { userInstance } from "@/axios/instances";
 import { AxiosError } from "axios";
+import * as z from "zod";
+import { editUsernameFormSchema } from "@/lib/zodSchemas";
+import { userInstance } from "@/axios/instances";
 
-export default function useUserRegister() {
+interface UpdateUserNameResponse {
+  usernames: string;
+}
+
+export default function useUpdateUsername() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any | AxiosError>("");
 
-  const registerUser = async (
-    user: z.infer<typeof registerUserFormSchema>
-  ): Promise<User> => {
+  const updateUsername = async (
+    username: z.infer<typeof editUsernameFormSchema>
+  ) => {
     setIsLoading(true);
     setError("");
     try {
-      const res = await userInstance.post("/auth/register", user);
+      const res = await userInstance.put("/user", username);
       console.log(res, "at useUserRegister hook");
       return res.data;
     } catch (error: AxiosError | any) {
@@ -25,5 +29,5 @@ export default function useUserRegister() {
     }
   };
 
-  return { isLoading, error, registerUser };
+  return { isLoading, error, updateUsername };
 }

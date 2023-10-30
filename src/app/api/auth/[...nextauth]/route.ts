@@ -1,9 +1,19 @@
-import bcrypt from "bcrypt";
-
-import NextAuth, { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions, type DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import connectDb, { disConnectDB } from "@/database/connectDB";
 import User from "@/database/models/userModel";
+
+interface ExtendedUser {
+  name?: string | null;
+  email?: string | null;
+  image?: string | null;
+  role?: string | null;
+  id?: string | null;
+}
+
+export interface ExtendedSession extends DefaultSession {
+  user?: ExtendedUser;
+}
 
 export const authOption: NextAuthOptions = {
   providers: [
@@ -30,6 +40,7 @@ export const authOption: NextAuthOptions = {
           id: user._id,
           name: user.username,
           email: user.email,
+          image: user.profilePicUrl,
           role: user.role,
         };
       },
@@ -44,9 +55,12 @@ export const authOption: NextAuthOptions = {
   },
   callbacks: {
     jwt(params: any) {
+      if (params.trigger === "update") {
+        return { ...params.token, ...params.session?.user };
+      }
       if (params?.user?.role) {
-        params.token.role = params.user.role;
         params.token.id = params.user.id;
+        params.token.role = params.user.role;
       }
       return params.token;
     },

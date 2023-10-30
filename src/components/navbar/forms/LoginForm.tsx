@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { redirect } from "next/navigation";
 import { useRouter } from "next/navigation";
 import * as z from "zod";
 import { LogIn } from "lucide-react";
@@ -37,7 +36,6 @@ export default function LogInForm() {
       const res = await signIn("credentials", {
         ...values,
         redirect: false,
-        callbackUrl: "/",
       });
       if (res?.error) {
         setError(res.error);
@@ -47,8 +45,8 @@ export default function LogInForm() {
         router.refresh();
       }
     } catch (error) {
-      console.log(error);
-      setError("Invalid something");
+      console.log(error, "while logging in");
+      setError("something`s wrong here! sorry ");
     }
   }
 
@@ -99,7 +97,10 @@ export default function LogInForm() {
           <Button
             type="button"
             variant={"secondary"}
-            onClick={() => form.reset()}
+            onClick={() => {
+              form.reset();
+              setError("");
+            }}
           >
             Reset
           </Button>

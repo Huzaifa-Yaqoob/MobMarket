@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { Pencil, PlusCircle } from "lucide-react";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -12,11 +13,16 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 
-export default function EditProfilePic(): React.ReactElement {
+export default function EditProfilePic({
+  currentAvatar,
+}: {
+  currentAvatar: string;
+}): React.ReactElement {
+  const { update } = useSession();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [fileData, setFileData] = useState<FileData>({
     file: null,
-    filePreview: "https://github.com/shadcn",
+    filePreview: currentAvatar,
     message: "Drag 'n' drop image here, or click to select image",
     errorMessage: "",
   });
@@ -24,7 +30,7 @@ export default function EditProfilePic(): React.ReactElement {
   const onRejection = (file: FileRejection[]) => {
     setFileData({
       file: null,
-      filePreview: "https://github.com/shadcn",
+      filePreview: currentAvatar,
       message: "Drag 'n' drop image here, or click to select image",
       errorMessage: file[0].errors[0].message + ". Try Again",
     });
@@ -46,7 +52,7 @@ export default function EditProfilePic(): React.ReactElement {
   const onError = (error: Error) => {
     setFileData({
       file: null,
-      filePreview: "https://github.com/shadcn",
+      filePreview: currentAvatar,
       message: "",
       errorMessage: "SomeThing went wrong",
     });

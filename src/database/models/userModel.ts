@@ -5,6 +5,7 @@ import { timeStamp } from "console";
 interface UserModel extends Document {
   email: string;
   username: string;
+  profilePicUrl: string;
   password: string;
   role: "user" | "admin";
 }
@@ -25,6 +26,11 @@ const userSchema = new mongoose.Schema<UserModel, {}, Methods>(
       minlength: 3,
       maxlength: 50,
       required: true,
+    },
+    profilePicUrl: {
+      type: String,
+      required: true,
+      default: "unknown.jpg",
     },
     password: {
       type: String,

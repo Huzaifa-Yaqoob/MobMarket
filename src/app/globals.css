@@ -76,6 +76,24 @@
   }
 }
 
+.royal-gradient {
+  background: linear-gradient(271deg, #e4fb3f, #fc4646, #fcac46);
+  background-size: 180% 180%;
+  animation: gradient-animation 5s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 .contact_background {
   background-image: url("/backgroundsvg/contact.svg");
   background-repeat: no-repeat;

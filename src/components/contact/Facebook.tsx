@@ -6,7 +6,7 @@ export default function Facebook(): React.ReactElement {
       <div>
         <Image
           alt="facebook"
-          src="/social/facebook.svg"
+          src="/assets/social/facebook.svg"
           width={50}
           height={50}
         />

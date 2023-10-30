@@ -15,7 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import useUserRegister from "@/hooks/useUserRegister";
-import ThreeDotsLoader from "@/components/common/ThreeDotsLoader";
+import ButtonWithThreeDotsLoading from "@/components/common/ButtonWithThreeDotsLoading";
 
 export default function RegisterForm() {
   const { isLoading, error, registerUser } = useUserRegister();
@@ -29,8 +29,7 @@ export default function RegisterForm() {
   });
 
   async function onSubmit(values: z.infer<typeof registerUserFormSchema>) {
-    const d = await registerUser(values);
-    console.log(d);
+    await registerUser(values);
   }
 
   return (
@@ -56,7 +55,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Username :</FormLabel>
               <FormControl>
-                <Input placeholder="Joy" {...field} />
+                <Input type="text" placeholder="Joy" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -77,9 +76,10 @@ export default function RegisterForm() {
         />
         <div>{error === "" ? "" : error}</div>
         <div className="flex items-center gap-4">
-          <Button type="submit" disabled={isLoading}>
-            {isLoading ? <ThreeDotsLoader /> : "Register"}
-          </Button>
+          <ButtonWithThreeDotsLoading
+            text="register"
+            isLoading={isLoading}
+          ></ButtonWithThreeDotsLoading>
           <Button
             type="button"
             variant={"secondary"}

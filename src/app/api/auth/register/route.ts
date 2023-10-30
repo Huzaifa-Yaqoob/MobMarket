@@ -2,6 +2,7 @@ import { NextRequest, type NextResponse } from "next/server";
 import connectDb, { disConnectDB } from "@/database/connectDB";
 import User from "@/database/models/userModel";
 
+// register user
 export async function POST(request: NextRequest, response: NextResponse) {
   try {
     const { email, username, password } = await request.json();
@@ -9,8 +10,10 @@ export async function POST(request: NextRequest, response: NextResponse) {
     const newUser = new User({ email, username, password });
     const user = await newUser.save();
     return Response.json({
+      id: user._id,
       email: user.email,
       username: user.username,
+      profilePicUrl: user.profilePicUrl,
       role: user.role,
     });
   } catch (error: Error | any) {

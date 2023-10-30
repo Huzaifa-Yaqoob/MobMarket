@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -16,14 +15,6 @@ import LoginForm from "../forms/LoginForm";
 
 export default function RegisterModal(): React.ReactElement {
   const [activeLogInForm, setActiveLogInForm] = useState(true);
-  const [openDialog, setOpenDialog] = useState(true);
-  // const session = useSession();
-
-  // useEffect(() => {
-  //   if (session) {
-  //     setOpenDialog(false);
-  //   }
-  // }, [session]);
 
   return (
     <Dialog>

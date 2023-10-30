@@ -6,7 +6,7 @@ export default function Instagram(): React.ReactElement {
       <div>
         <Image
           alt="instagram"
-          src="/social/instagram.svg"
+          src="/assets/social/instagram.svg"
           width={50}
           height={50}
         />

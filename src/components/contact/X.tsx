@@ -4,7 +4,12 @@ export default function X(): React.ReactElement {
   return (
     <div className="flex flex-col justify-center items-center gap-2 max-w-[20rem] text-center glass rounded p-2">
       <div>
-        <Image alt="x(twitter)" src="/social/x.svg" width={50} height={50} />
+        <Image
+          alt="x(twitter)"
+          src="/assets/social/x.svg"
+          width={50}
+          height={50}
+        />
       </div>
       <span className="font-bold">huzaifa</span>
       <span>

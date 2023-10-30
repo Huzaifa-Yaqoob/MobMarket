@@ -6,7 +6,7 @@ export default function Whatsapp(): React.ReactElement {
       <div>
         <Image
           alt="whatsapp"
-          src="/social/whatsapp.svg"
+          src="/assets/social/whatsapp.svg"
           width={50}
           height={50}
         />

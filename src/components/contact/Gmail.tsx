@@ -4,7 +4,12 @@ export default function Gmail(): React.ReactElement {
   return (
     <div className="flex flex-col justify-center items-center gap-2 max-w-[20rem] text-center glass rounded p-2">
       <div>
-        <Image alt="facebook" src="/social/gmail.svg" width={50} height={50} />
+        <Image
+          alt="facebook"
+          src="/assets/social/gmail.svg"
+          width={50}
+          height={50}
+        />
       </div>
       <span className="font-bold">51huzaifayaqoob@gmail.com</span>
       <span>

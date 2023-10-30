@@ -1,8 +1,9 @@
 // user data after login
 type User =
+  | undefined
   | {
       _id: string;
       email: string;
       name: string;
-    }
-  | undefined;
+      role: "admin" | "user";
+    };

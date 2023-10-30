@@ -6,10 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { Info } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useSession } from "next-auth/react";
+import useUpdateUsername from "@/hooks/useUpdateUsername";
 import { editUsernameFormSchema } from "@/lib/zodSchemas";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import ButtonWithThreeDotsLoading from "@/components/common/ButtonWithThreeDotsLoading";
+import Error from "@/components/common/Error";
 import {
   Form,
   FormControl,
@@ -20,18 +23,35 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-export default function EditUserName(): React.ReactElement {
+export default function EditUserName({
+  currentName,
+}: {
+  currentName: string;
+}): React.ReactElement {
+  const { data: session, update } = useSession();
+  const { isLoading, error, updateUsername } = useUpdateUsername();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const form = useForm<z.infer<typeof editUsernameFormSchema>>({
     resolver: zodResolver(editUsernameFormSchema),
     defaultValues: {
-      username: "",
+      username: currentName,
     },
   });
 
-  function onSubmit(values: z.infer<typeof editUsernameFormSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof editUsernameFormSchema>) {
+    if (values.username !== currentName) {
+      const res = await updateUsername(values);
+      update({
+        ...session,
+        user: {
+          ...session?.user,
+          name: res.username,
+        },
+      });
+      console.log(res);
+      console.log(session);
+    }
     setIsDialogOpen(false);
   }
 
@@ -62,7 +82,10 @@ export default function EditUserName(): React.ReactElement {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <ButtonWithThreeDotsLoading
+              text="Change Username"
+              isLoading={isLoading}
+            />
           </form>
         </Form>
       </DialogContent>
