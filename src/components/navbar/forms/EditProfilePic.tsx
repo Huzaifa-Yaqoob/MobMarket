@@ -66,9 +66,9 @@ export default function EditProfilePic({
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <span className="flex gap-2 items-center text-sm cursor-pointer text-info hover:underline underline-info">
-          edit profile picture <Pencil className="mr-2 h-4 w-4" />
-        </span>
+        <Button variant={"link"} className="p-0 m-0">
+          edit Profile Picture <Pencil className="mr-2 h-4 w-4" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

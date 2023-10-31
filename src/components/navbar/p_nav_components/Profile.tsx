@@ -20,6 +20,7 @@ export default function Profile(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const { data: session } = useSession();
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
@@ -44,7 +45,7 @@ export default function Profile(): React.ReactElement {
                   ? `/avatar/${session?.user?.image as string}`
                   : "/avatar/unknown.jpg"
               }
-              alt="@shadcn"
+              alt={session?.user?.image as string}
             />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
@@ -52,7 +53,7 @@ export default function Profile(): React.ReactElement {
             currentAvatar={
               session?.user?.image
                 ? `/avatar/${session?.user?.image as string}`
-                : "https://github.com/shadcn.png"
+                : "/avatar/unknown.jpg"
             }
           />
         </DialogHeader>
@@ -73,7 +74,7 @@ export default function Profile(): React.ReactElement {
           <div className="bg-primary-foreground p-2 rounded shadow-lg">
             {session?.user?.email}
           </div>
-          <div className="flex justify-between bg-primary-foreground p-2 rounded shadow-lg">
+          <div className="flex justify-between items-center bg-primary-foreground p-2 rounded shadow-lg">
             {session?.user?.name}
             <EditUserName
               currentName={

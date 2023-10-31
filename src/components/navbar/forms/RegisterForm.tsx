@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { registerUserFormSchema } from "@/lib/zodSchemas";
+import { registerUserFormSchema, testSchema } from "@/lib/zodSchemas";
 import {
   Form,
   FormControl,
@@ -17,11 +17,14 @@ import { Input } from "@/components/ui/input";
 import useUserRegister from "@/hooks/useUserRegister";
 import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 import Error from "@/components/common/Error";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function RegisterForm() {
   const { isLoading, error, registerUser } = useUserRegister();
-  const form = useForm<z.infer<typeof registerUserFormSchema>>({
-    resolver: zodResolver(registerUserFormSchema),
+  const { toast } = useToast();
+
+  const form = useForm<z.infer<typeof testSchema>>({
+    resolver: zodResolver(testSchema),
     defaultValues: {
       email: "",
       username: "",
@@ -29,8 +32,15 @@ export default function RegisterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof registerUserFormSchema>) {
-    await registerUser(values);
+  async function onSubmit(values: z.infer<typeof testSchema>) {
+    const ok = await registerUser(values);
+    if (ok) {
+      toast({
+        title: "Successfully Registered",
+        description:
+          "you have been registered successfully. Now login to proceed",
+      });
+    }
   }
 
   return (
@@ -43,7 +53,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Email :</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="joy@example.com" {...field} />
+                <Input type="text" placeholder="joy@example.com" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -69,7 +79,7 @@ export default function RegisterForm() {
             <FormItem>
               <FormLabel>Password :</FormLabel>
               <FormControl>
-                <Input type="password" placeholder="12345678" {...field} />
+                <Input type="text" placeholder="12345678" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

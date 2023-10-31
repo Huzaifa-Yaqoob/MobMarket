@@ -8,18 +8,16 @@ export default function useUserRegister() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any | AxiosError>("");
 
-  const registerUser = async (
-    user: z.infer<typeof registerUserFormSchema>
-  ): Promise<User> => {
+  const registerUser = async (user: z.infer<typeof registerUserFormSchema>) => {
     setIsLoading(true);
     setError("");
     try {
       const res = await userInstance.post("/auth/register", user);
       console.log(res, "at useUserRegister hook");
-      return res.data;
+      return res.status;
     } catch (error: AxiosError | any) {
       console.log(error, "at useUserRegister hook");
-      setError(error.message);
+      setError(error.response.data.message);
     } finally {
       setIsLoading(false);
     }

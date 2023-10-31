@@ -12,6 +12,7 @@ import { editUsernameFormSchema } from "@/lib/zodSchemas";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import Error from "@/components/common/Error";
+import { Button } from "@/components/ui/button";
 import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 import {
   Form,
@@ -42,15 +43,13 @@ export default function EditUserName({
   async function onSubmit(values: z.infer<typeof editUsernameFormSchema>) {
     if (values.username !== currentName) {
       const res = await updateUsername(values);
-      update({
+      await update({
         ...session,
         user: {
           ...session?.user,
           name: res.username,
         },
       });
-      console.log(res);
-      console.log(session);
     }
     setIsDialogOpen(false);
   }
@@ -58,9 +57,9 @@ export default function EditUserName({
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <span className="flex gap-2 items-center font-normal text-sm cursor-pointer text-info hover:underline underline-info">
+        <Button variant={"link"} className="p-0 m-0">
           edit username <Pencil className="mr-2 h-4 w-4" />
-        </span>
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <Form {...form}>

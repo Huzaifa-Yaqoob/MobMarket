@@ -1,12 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import * as z from "zod";
-import { LogIn } from "lucide-react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
 import useUserLogIn from "@/hooks/useUserLogIn";
 import { logInUserFormSchema } from "@/lib/zodSchemas";
 import {
@@ -23,7 +19,6 @@ import Error from "@/components/common/Error";
 import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 
 export default function LogInForm() {
-  const router = useRouter();
   const { isLoading, error, logInUser } = useUserLogIn();
   const form = useForm<z.infer<typeof logInUserFormSchema>>({
     resolver: zodResolver(logInUserFormSchema),
@@ -34,10 +29,7 @@ export default function LogInForm() {
   });
 
   async function onSubmit(values: z.infer<typeof logInUserFormSchema>) {
-    const ok = await logInUser(values);
-    if (ok) {
-      router.refresh();
-    }
+    await logInUser(values);
   }
 
   return (

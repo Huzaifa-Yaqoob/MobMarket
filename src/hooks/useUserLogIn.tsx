@@ -3,10 +3,12 @@ import * as z from "zod";
 import { logInUserFormSchema } from "@/lib/zodSchemas";
 import { signIn } from "next-auth/react";
 import { AxiosError } from "axios";
+import { useRouter } from "next/navigation";
 
 export default function useUserLogIn() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any | AxiosError>("");
+  const router = useRouter();
 
   const logInUser = async (data: z.infer<typeof logInUserFormSchema>) => {
     setError("");
@@ -18,6 +20,9 @@ export default function useUserLogIn() {
       });
       if (res?.error) {
         setError(res.error);
+      }
+      if (res?.ok) {
+        router.refresh();
       }
       return res?.ok;
     } catch (error) {

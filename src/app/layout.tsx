@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/provider/ThemeProvider";
 import AuthProvider from "@/provider/AuthProvider";
 import NavBar from "@/components/navbar/NavBar";
 import Footer from "@/components/footer/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
             <NavBar />
             <main className="flex-grow">{children}</main>
             <Footer />
+            <Toaster />
           </ThemeProvider>
         </AuthProvider>
       </body>

@@ -1,6 +1,5 @@
 import mongoose, { Document } from "mongoose";
 import bcrypt from "bcrypt";
-import { timeStamp } from "console";
 
 interface UserModel extends Document {
   email: string;
@@ -19,21 +18,29 @@ const userSchema = new mongoose.Schema<UserModel, {}, Methods>(
     email: {
       type: String,
       required: true,
+      validate: function (email: string) {
+        console.log(email);
+        const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (!emailRegex.test(email)) {
+          throw new Error("Invalid email");
+        }
+        return true;
+      },
       unique: true,
     },
     username: {
       type: String,
+      required: true,
       minlength: 3,
       maxlength: 50,
-      required: true,
     },
     profilePicUrl: {
       type: String,
-      required: true,
       default: "unknown.jpg",
     },
     password: {
       type: String,
+      required: true,
       minlength: 8,
       maxlength: 64,
     },

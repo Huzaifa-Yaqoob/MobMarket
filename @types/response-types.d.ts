@@ -7,3 +7,8 @@ type User =
       name: string;
       role: "admin" | "user";
     };
+
+interface ErrorMessage {
+  status: { status: number };
+  msg: { message: string };
+}

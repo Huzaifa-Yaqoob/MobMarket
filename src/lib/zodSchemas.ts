@@ -1,6 +1,10 @@
 import * as z from "zod";
 import { checkIfZero, checkIfNull } from "./checkersForZod";
 
+// schemas for testing backend
+
+export const testSchema = z.any();
+
 // User related Schemas
 
 // Schema for registering user

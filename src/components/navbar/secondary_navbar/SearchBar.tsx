@@ -16,7 +16,7 @@ export function SearchBar(): React.ReactElement {
       className="flex items-center bg-background rounded p-2 space-x-2 text-xs"
     >
       <input
-        placeholder="Search..."
+        placeholder="Type product name..."
         type="text"
         value={searchValue}
         onChange={(e) => {
