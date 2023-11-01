@@ -18,12 +18,12 @@ export default function useUpdateUsername() {
     setIsLoading(true);
     setError("");
     try {
-      const res = await userInstance.put("/user", username);
+      const res = await userInstance().put("/user", username);
       console.log(res, "at useUserRegister hook");
       return res.data;
     } catch (error: AxiosError | any) {
       console.log(error, "at useUserRegister hook");
-      setError(error.message);
+      setError(error.response.data.message);
     } finally {
       setIsLoading(false);
     }

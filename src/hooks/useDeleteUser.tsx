@@ -10,7 +10,7 @@ export default function useDeleteUser() {
     setIsLoading(true);
     setError("");
     try {
-      const res = await userInstance.delete("/user");
+      const res = await userInstance().delete("/user");
       console.log(res, "at useUserRegister hook");
       return res.status;
     } catch (error: AxiosError | any) {

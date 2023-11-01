@@ -56,8 +56,10 @@ export const authOption: NextAuthOptions = {
   callbacks: {
     jwt(params: any) {
       if (params.trigger === "update") {
+        console.log(params.session?.user);
         return { ...params.token, ...params.session?.user };
       }
+      console.log("kiu");
       if (params?.user?.role) {
         params.token.id = params.user.id;
         params.token.role = params.user.role;

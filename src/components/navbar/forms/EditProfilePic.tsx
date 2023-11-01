@@ -4,6 +4,9 @@ import { useState } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { Pencil, PlusCircle } from "lucide-react";
 import { useSession } from "next-auth/react";
+import useUpdateProfilePic from "@/hooks/useUpdateProfilePic";
+import Error from "@/components/common/Error";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -18,7 +21,8 @@ export default function EditProfilePic({
 }: {
   currentAvatar: string;
 }): React.ReactElement {
-  const { update } = useSession();
+  const { isLoading, error, updateProfilePic } = useUpdateProfilePic();
+  const { data: session, update } = useSession();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [fileData, setFileData] = useState<FileData>({
     file: null,
@@ -58,9 +62,21 @@ export default function EditProfilePic({
     });
   };
 
-  const submitHandler = (e: any) => {
-    console.log(fileData.file);
+  const submitHandler = async (e: any) => {
     e.preventDefault();
+    const formData = new FormData();
+    if (fileData?.file) {
+      formData.append("file", fileData?.file[0]);
+      const res = await updateProfilePic(formData);
+      console.log(res);
+      update({
+        ...session,
+        user: {
+          ...session?.user,
+          image: res?.profilePicUrl,
+        },
+      });
+    }
   };
 
   return (
@@ -79,6 +95,7 @@ export default function EditProfilePic({
             </Avatar>
             <form
               onSubmit={submitHandler}
+              encType="multipart/form-data"
               className="flex flex-col gap-2 align-middle w-full"
             >
               <Dropzone
@@ -109,7 +126,11 @@ export default function EditProfilePic({
                   </div>
                 )}
               </Dropzone>
-              <Button>Submit</Button>
+              <Error msg={error} />
+              <ButtonWithLoadingState
+                text="Upload Picture"
+                isLoading={isLoading}
+              />
             </form>
           </div>
         </DialogHeader>

@@ -3,7 +3,7 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-import { registerUserFormSchema, testSchema } from "@/lib/zodSchemas";
+import { registerUserFormSchema } from "@/lib/zodSchemas";
 import {
   Form,
   FormControl,
@@ -23,8 +23,8 @@ export default function RegisterForm() {
   const { isLoading, error, registerUser } = useUserRegister();
   const { toast } = useToast();
 
-  const form = useForm<z.infer<typeof testSchema>>({
-    resolver: zodResolver(testSchema),
+  const form = useForm<z.infer<typeof registerUserFormSchema>>({
+    resolver: zodResolver(registerUserFormSchema),
     defaultValues: {
       email: "",
       username: "",
@@ -32,13 +32,13 @@ export default function RegisterForm() {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof testSchema>) {
+  async function onSubmit(values: z.infer<typeof registerUserFormSchema>) {
     const ok = await registerUser(values);
     if (ok) {
       toast({
         title: "Successfully Registered",
         description:
-          "you have been registered successfully. Now login to proceed",
+          "you have been registered successfully. Now please login to proceed",
       });
     }
   }

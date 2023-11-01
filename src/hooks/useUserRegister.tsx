@@ -12,7 +12,7 @@ export default function useUserRegister() {
     setIsLoading(true);
     setError("");
     try {
-      const res = await userInstance.post("/auth/register", user);
+      const res = await userInstance().post("/auth/register", user);
       console.log(res, "at useUserRegister hook");
       return res.status;
     } catch (error: AxiosError | any) {

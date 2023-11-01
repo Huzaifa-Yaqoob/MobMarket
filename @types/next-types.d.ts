@@ -50,7 +50,7 @@ interface TImage {
 
 // interface for fileData for dropzone
 interface FileData {
-  file: File[] | null;
+  file?: File[] | null;
   filePreview: string;
   message: string;
   errorMessage: string;

@@ -21,6 +21,8 @@ export default function Profile(): React.ReactElement {
 
   const { data: session } = useSession();
 
+  console.log(session);
+
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>

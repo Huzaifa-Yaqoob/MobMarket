@@ -47,7 +47,7 @@ export default function EditUserName({
         ...session,
         user: {
           ...session?.user,
-          name: res.username,
+          name: res?.username,
         },
       });
     }
