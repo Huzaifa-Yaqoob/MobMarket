@@ -68,12 +68,12 @@ export default function EditProfilePic({
     if (fileData?.file) {
       formData.append("file", fileData?.file[0]);
       const res = await updateProfilePic(formData);
-      console.log(res);
       update({
         ...session,
         user: {
           ...session?.user,
-          image: res?.profilePicUrl,
+          /* in server session you have to send picture url with name of Picture but in client side you will get this picture as image it`s bt default i don`t know why so that`s why if you want to update image you have to change picture here.?*/
+          picture: res?.profilePicUrl,
         },
       });
     }

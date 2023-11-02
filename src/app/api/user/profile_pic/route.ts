@@ -16,7 +16,6 @@ const getUniqueName = () => {
 
 // this function will make sure that the directory must exist if it dos1nt exist then it will create it.
 const makdirIfNotExist = (name: string): string => {
-  console.log(name);
   const avatarPath = path.join(process.cwd(), "/public/avatar");
   if (!fs.existsSync(avatarPath)) {
     fs.mkdirSync(avatarPath, { recursive: true });
@@ -36,7 +35,6 @@ export async function PUT(request: NextRequest) {
     const data = await request.formData();
     const session = await getServerSession(authOption);
     const file = data.get("file") as File;
-    console.log(typeof file.type);
     if (!file || !session || !checkImageType(file.type)) {
       throw new Error("00");
     }

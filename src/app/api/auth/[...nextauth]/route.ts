@@ -54,19 +54,17 @@ export const authOption: NextAuthOptions = {
     signIn: "/",
   },
   callbacks: {
-    jwt(params: any) {
+    async jwt(params: any) {
       if (params.trigger === "update") {
-        console.log(params.session?.user);
         return { ...params.token, ...params.session?.user };
       }
-      console.log("kiu");
       if (params?.user?.role) {
         params.token.id = params.user.id;
         params.token.role = params.user.role;
       }
       return params.token;
     },
-    session({ session, token }) {
+    async session({ session, token }) {
       if (session.user) {
         (session.user as { id: string }).id = token.id as string;
         (session.user as { role: string }).role = token.role as string;

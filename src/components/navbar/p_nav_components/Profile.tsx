@@ -18,10 +18,7 @@ import {
 
 export default function Profile(): React.ReactElement {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-
   const { data: session } = useSession();
-
-  console.log(session);
 
   return (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>

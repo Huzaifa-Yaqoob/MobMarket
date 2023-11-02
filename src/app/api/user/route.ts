@@ -10,7 +10,6 @@ export async function PUT(request: NextRequest) {
     await connectDb();
     const session = await getServerSession(authOption);
     const { username } = await request.json();
-    console.log(username);
     if (session?.user?.id) {
       const user = await User.findByIdAndUpdate(
         session?.user?.id,
@@ -24,7 +23,7 @@ export async function PUT(request: NextRequest) {
       throw new Error("00");
     }
   } catch (error) {
-    console.log(error);
+    console.log(error, "at error in username edit");
     return Response.json(
       { message: "something`s wrong. sorry!" },
       { status: 500 }
