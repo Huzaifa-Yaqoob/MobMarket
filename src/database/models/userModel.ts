@@ -19,7 +19,6 @@ const userSchema = new mongoose.Schema<UserModel, {}, Methods>(
       type: String,
       required: true,
       validate: function (email: string) {
-        console.log(email);
         const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
         if (!emailRegex.test(email)) {
           throw new Error("Invalid email");
@@ -76,7 +75,7 @@ userSchema.methods.comparePassword = async function (password: string) {
   }
 };
 
-let User = mongoose.models.user || mongoose.model("user", userSchema);
+const User = mongoose.models.user || mongoose.model("user", userSchema);
 
 export default User as mongoose.Model<UserModel, {}, Methods>;
 export type { UserModel };

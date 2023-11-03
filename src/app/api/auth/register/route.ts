@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import connectDb, { disConnectDB } from "@/database/connectDB";
 import User from "@/database/models/userModel";
 import errorHandler from "@/handler/errorHandler";

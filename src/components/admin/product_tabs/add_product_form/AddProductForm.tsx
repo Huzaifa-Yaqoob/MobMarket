@@ -22,12 +22,18 @@ import ImgSelector from "./fields/ImgSelector";
 import VariantSet from "./fields/VariantSet";
 import YearSelect from "./fields/YearSelect";
 import { useFileDataStore, useVariantSetStore } from "@/lib/store";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
+import Error from "@/components/common/Error";
+import useAddProduct from "@/hooks/useAddProduct";
 
 // Constants
 const MAX_WORDS_FOR_DETAILS = 500;
-const ACCEPTED_TYPES_FOR_PRODUCT_IMAGE = { "image/*": [".png"] };
+const ACCEPTED_TYPES_FOR_PRODUCT_IMAGE = {
+  "image/*": [".png", ".jpg", "jpeg"],
+};
 
 export default function AddProductForm(): React.ReactElement {
+  const { isLoading, error, addProduct } = useAddProduct();
   const [wordsCount, setWordsCount] = useState(0);
   const [fileData, updateFileData, resetFileData] = useFileDataStore(
     (state) => [state.fileData, state.updateFileData, state.resetFileData]
@@ -67,10 +73,8 @@ export default function AddProductForm(): React.ReactElement {
     );
   }, [fileData, variantss]);
 
-  function onSubmit(values: z.infer<typeof addProductFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof addProductFormSchema>) {
+    await addProduct(values);
   }
 
   return (
@@ -289,9 +293,8 @@ export default function AddProductForm(): React.ReactElement {
           />
         </div>
         <div className="row-start-5 md:row-start-4 h-auto flex align-middle gap-4 justify-between">
-          <Button type="submit" className="w-full">
-            Add
-          </Button>
+          <ButtonWithLoadingState isLoading={isLoading} text="Add Product" />
+
           <Button
             type="reset"
             variant="secondary"

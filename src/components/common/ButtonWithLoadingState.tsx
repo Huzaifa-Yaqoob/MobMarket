@@ -30,6 +30,7 @@ export default function ButtonWithLoadingState({
       variant={variant}
       disabled={isLoading}
       onClick={onClick ? onClick : undefined}
+      className="w-full"
     >
       {isLoading ? (
         <>

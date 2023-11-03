@@ -73,6 +73,11 @@ export const editReviewFormSchema = z.object({
 
 // Admin related schemas
 
+// Schema for adding brands
+export const addBrandSchema = z.object({
+  brand: z.string().nonempty(),
+});
+
 // Schema for validation of adding product details by admin
 export const addProductFormSchema = z.object({
   picture: z
