@@ -7,6 +7,7 @@ export async function POST(request: NextRequest) {
   try {
     const brand = await request.json();
     await disConnectDB();
+    console.log("challing");
     return Response.json({ message: "success" });
   } catch (error) {
     console.log(error, "while posting brand");
