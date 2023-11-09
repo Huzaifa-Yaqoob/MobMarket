@@ -38,10 +38,6 @@ export default function Sales() {
             <Pencil className="mr-2 h-4 w-4" />
             Edit sales
           </li>
-          <li className="flex items-center">
-            <MinusCircle className="mr-2 h-4 w-4" />
-            Remove sales
-          </li>
         </ul>
       </CardContent>
       <CardFooter className="text-muted-foreground flex flex-col items-start">

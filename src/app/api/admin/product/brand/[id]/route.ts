@@ -1,17 +1,25 @@
 import { NextRequest } from "next/server";
 import connectDb, { disConnectDB } from "@/database/connectDB";
+import Brand from "@/database/models/brandModel";
 import errorHandler from "@/handler/errorHandler";
-import Order from "@/database/models/orderModel";
 
-export async function POST(request: NextRequest) {
+export async function PUT(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
   try {
+    const id = params.id;
+    const brand = await request.json();
     await connectDb();
-    const req = await request.json();
-    const newOrder = new Order({ ...req });
-    await newOrder.save();
+    console.log(brand);
+    await Brand.findByIdAndUpdate(
+      id,
+      { name: brand.name, hide: brand.hide },
+      { runValidators: true }
+    );
     return Response.json({ message: "success" });
   } catch (error) {
-    console.log(error, "at posting order");
+    console.log(error, "while updating brand");
     const err = errorHandler(error);
     return Response.json(
       { message: err.msg.message },

@@ -23,15 +23,15 @@ import { Button } from "@/components/ui/button";
 import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
 import { addBrandSchema } from "@/lib/zodSchemas";
 import { Input } from "@/components/ui/input";
-import useAddBrandName from "@/hooks/useAddBrandName";
+import useAddBrand from "@/hooks/useAddBrand";
 import Error from "@/components/common/Error";
 
 export default function AddBrandDialog(): React.ReactElement {
-  const { isLoading, error, addBrand } = useAddBrandName();
+  const { isLoading, error, addBrand } = useAddBrand();
   const form = useForm<z.infer<typeof addBrandSchema>>({
     resolver: zodResolver(addBrandSchema),
     defaultValues: {
-      brand: "",
+      name: "",
     },
   });
 
@@ -44,7 +44,7 @@ export default function AddBrandDialog(): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant={"outline"}>
+        <Button>
           <PlusCircle className="mr-2 h-4 w-4" />
           Add Brand
         </Button>
@@ -57,7 +57,7 @@ export default function AddBrandDialog(): React.ReactElement {
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
             <FormField
               control={form.control}
-              name="brand"
+              name="name"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>New Brand :</FormLabel>

@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Switch } from "@/components/ui/switch";
+import EditBrandDialog from "./EditBrandDialog";
 
 export interface BrandTable {
   id: string;
@@ -36,15 +36,34 @@ export const brandColumns: ColumnDef<BrandTable>[] = [
     header: "Products",
   },
   {
-    header: "Visible",
+    header: "Visibility",
     accessorKey: "hide",
     cell: ({ row }) => {
-      const [isVisible, setIsVisible] = useState<boolean>(row.getValue("hide"));
+      const classes = row.getValue("hide")
+        ? "text-destructive"
+        : "text-success";
+      return row.getValue("hide") ? (
+        <span className="text-destructive-foreground bg-destructive p-1 rounded">
+          Hidden
+        </span>
+      ) : (
+        <span className="bg-success p-1 rounded">Visible</span>
+      );
+    },
+  },
+  {
+    id: "edit",
+    cell: ({ row }) => {
+      return <EditBrandDialog data={row.original} />;
+    },
+  },
+  {
+    id: "showAll",
+    cell: ({ row }) => {
       return (
-        <Switch
-          checked={isVisible}
-          onCheckedChange={() => setIsVisible(!isVisible)}
-        />
+        <Button asChild variant={"link"}>
+          <Link href="/">Show All</Link>
+        </Button>
       );
     },
   },

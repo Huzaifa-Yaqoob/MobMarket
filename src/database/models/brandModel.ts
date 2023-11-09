@@ -9,6 +9,7 @@ const brandSchema = new mongoose.Schema<BrandModel, {}>({
   name: {
     type: String,
     required: true,
+    unique: true,
   },
   hide: {
     type: Boolean,
@@ -16,7 +17,7 @@ const brandSchema = new mongoose.Schema<BrandModel, {}>({
   },
 });
 
-const Brand = mongoose.models.brand || mongoose.model("brands", brandSchema);
+const Brand = mongoose.models.brand || mongoose.model("brand", brandSchema);
 
 export default Brand as mongoose.Model<BrandModel, {}>;
 export type { BrandModel };

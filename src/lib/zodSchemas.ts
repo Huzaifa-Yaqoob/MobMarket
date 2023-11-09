@@ -75,7 +75,18 @@ export const editReviewFormSchema = z.object({
 
 // Schema for adding brands
 export const addBrandSchema = z.object({
-  brand: z.string().nonempty(),
+  name: z.string().nonempty(),
+});
+
+// Schema for editing brands name and hidden status
+export const editBrandSchema = z.object({
+  name: z.string().nonempty(),
+  hide: z.coerce.boolean(),
+});
+
+// Schema for editing stock of product
+export const editStockSchema = z.object({
+  stock: z.coerce.number().min(0),
 });
 
 // Schema for validation of adding product details by admin

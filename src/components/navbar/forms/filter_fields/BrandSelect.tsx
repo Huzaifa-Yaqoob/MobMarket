@@ -1,5 +1,8 @@
+"use client";
+
+import { useEffect } from "react";
 import * as z from "zod";
-import Select from "react-select";
+import Select from "react-select/async";
 import { filterProductsFormSchema } from "@/lib/zodSchemas";
 
 interface BrandSelectProps {

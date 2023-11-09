@@ -21,7 +21,7 @@ const saleSchema = new mongoose.Schema<SaleModel, {}>({
   },
 });
 
-const Sale = mongoose.models.brand || mongoose.model("sales", saleSchema);
+const Sale = mongoose.models.brand || mongoose.model("sale", saleSchema);
 
 export default Sale as mongoose.Model<SaleModel, {}>;
 export type { SaleModel };

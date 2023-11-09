@@ -1,4 +1,4 @@
-import { Package, PlusCircle, MinusCircle, View, Pencil } from "lucide-react";
+import { Package, PlusCircle, View, Pencil } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -33,10 +33,6 @@ export default function Products() {
           <li className="flex items-center">
             <Pencil className="mr-2 h-4 w-4" />
             Edit products
-          </li>
-          <li className="flex items-center">
-            <MinusCircle className="mr-2 h-4 w-4" />
-            Remove products
           </li>
         </ul>
       </CardContent>

@@ -1,4 +1,4 @@
-import AddProductForm from "@/components/admin/product_tabs/add_product_form/AddProductForm";
+import AddProductForm from "@/components/admin/product/add/AddProductForm";
 
 export default function AddProductPage(): React.ReactElement {
   return (

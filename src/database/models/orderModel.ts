@@ -13,6 +13,7 @@ interface OrderModel extends Document {
   user: mongoose.Types.ObjectId | undefined;
   sale: mongoose.Types.ObjectId;
   bill: number;
+  status: "ongoing" | "completed" | "cancelled";
 }
 
 const geoLocationSchema = new mongoose.Schema<GeoLocation>({
@@ -62,6 +63,11 @@ const orderSchema = new mongoose.Schema<OrderModel, {}>({
   bill: {
     type: Number,
     required: true,
+  },
+  status: {
+    type: String,
+    required: true,
+    default: "ongoing",
   },
 });
 

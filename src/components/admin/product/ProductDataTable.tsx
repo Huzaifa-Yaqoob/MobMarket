@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import {
   useReactTable,
   ColumnDef,
@@ -19,15 +20,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import AddBrandDialog from "./AddBrandDialog";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-export default function BrandsDataTable<TData, TValue>({
+export default function ProductDataTable<TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -58,7 +59,9 @@ export default function BrandsDataTable<TData, TValue>({
             table.getColumn("name")?.setFilterValue(event.target.value)
           }
         />
-        <AddBrandDialog />
+        <Button asChild>
+          <Link href="/admin/products/add">Add Product</Link>
+        </Button>
       </div>
       <div className="rounded border">
         <Table>
