@@ -68,7 +68,7 @@ export const orderFormSchema = z.object({
 });
 
 export const editReviewFormSchema = z.object({
-  rating: z.coerce.number(),
+  rating: z.coerce.number().min(1).max(5),
 });
 
 // Admin related schemas

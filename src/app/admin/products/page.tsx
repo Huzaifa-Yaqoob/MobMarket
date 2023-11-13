@@ -11,6 +11,7 @@ export default function AdminProductPage(): React.ReactElement {
       stock: 20,
       rating: 2,
       purchases: 4,
+      sale: true,
     },
     {
       _id: "2",
@@ -20,6 +21,7 @@ export default function AdminProductPage(): React.ReactElement {
       stock: 12,
       rating: 3,
       purchases: 4,
+      sale: false,
     },
     {
       _id: "3",
@@ -29,6 +31,7 @@ export default function AdminProductPage(): React.ReactElement {
       stock: 100,
       rating: 5,
       purchases: 4,
+      sale: true,
     },
   ];
   return (

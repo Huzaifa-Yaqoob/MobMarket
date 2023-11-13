@@ -1,10 +1,4 @@
-import {
-  BadgePercent,
-  View,
-  PlusCircle,
-  MinusCircle,
-  Pencil,
-} from "lucide-react";
+import { Blocks, View, PlusCircle, Pencil } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -14,38 +8,41 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-export default function Sales() {
+export default function Brand() {
   return (
     <Card className="border-primary hover:bg-accent transition-colors flex-grow">
       <CardHeader>
         <div className="m-auto text-primary">
-          <BadgePercent size={100} />
+          <Blocks size={100} />
         </div>
-        <CardTitle className="text-primary">Actions on Sales</CardTitle>
-        <CardDescription>All actions you can perform on sales.</CardDescription>
+        <CardTitle className="text-primary">Actions on Brands</CardTitle>
+        <CardDescription>
+          All actions you can perform on brands.
+        </CardDescription>
       </CardHeader>
       <CardContent>
         <ul>
           <li className="flex items-center">
             <View className="mr-2 h-4 w-4" />
-            View all Sales
+            View all brands
           </li>
           <li className="flex items-center">
             <PlusCircle className="mr-2 h-4 w-4" />
-            Add sales
+            Add brands
           </li>
           <li className="flex items-center">
             <Pencil className="mr-2 h-4 w-4" />
-            Edit sales
+            Edit brands
           </li>
         </ul>
       </CardContent>
       <CardFooter className="text-muted-foreground flex flex-col items-start">
         <div>
-          Total sales are <span className="text-primary ml-1">100.</span>
+          Total brands are <span className="text-primary ml-1">100.</span>
         </div>
         <div>
-          Ongoing sales are <span className="text-primary ml-1">100.</span>
+          Hidden brands sales are{" "}
+          <span className="text-primary ml-1">100.</span>
         </div>
       </CardFooter>
     </Card>

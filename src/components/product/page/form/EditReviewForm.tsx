@@ -17,13 +17,20 @@ import {
 import { Button } from "@/components/ui/button";
 import RatingField from "./edit_review_field/RatingField";
 
-export default function EditReviewForm(): React.ReactElement {
+export default function EditReviewForm({
+  userRating,
+  productId,
+}: {
+  userRating: number;
+  productId: string;
+}): React.ReactElement {
   const form = useForm<z.infer<typeof editReviewFormSchema>>({
     resolver: zodResolver(editReviewFormSchema),
     defaultValues: {
-      rating: 0,
+      rating: userRating,
     },
   });
+  console.log(userRating, productId);
 
   function onSubmit(values: z.infer<typeof editReviewFormSchema>) {
     // Do something with the form values.
@@ -44,7 +51,6 @@ export default function EditReviewForm(): React.ReactElement {
           name="rating"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Rating :</FormLabel>
               <FormControl>
                 <RatingField field={field} setValue={form.setValue} />
               </FormControl>

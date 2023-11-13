@@ -3,7 +3,7 @@ import mongoose, { Document } from "mongoose";
 interface RatingModel extends Document {
   rating: 1 | 2 | 3 | 4 | 5;
   product: mongoose.Types.ObjectId;
-  user: mongoose.Types.ObjectId | undefined;
+  user: mongoose.Types.ObjectId;
 }
 
 const orderSchema = new mongoose.Schema<RatingModel, {}>({
@@ -22,7 +22,7 @@ const orderSchema = new mongoose.Schema<RatingModel, {}>({
   },
 });
 
-const Rating = mongoose.models.Rating || mongoose.model("rating", orderSchema);
+const Rating = mongoose.models.rating || mongoose.model("rating", orderSchema);
 
 export default Rating as mongoose.Model<RatingModel, {}>;
 export type { RatingModel };

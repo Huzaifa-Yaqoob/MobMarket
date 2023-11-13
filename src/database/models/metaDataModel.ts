@@ -1,6 +1,7 @@
 import mongoose, { Document } from "mongoose";
 
 interface MetaDataModel extends Document {
+  key: string;
   minRam: number;
   maxRam: number;
   minPrice: number;
@@ -8,6 +9,10 @@ interface MetaDataModel extends Document {
 }
 
 const orderSchema = new mongoose.Schema<MetaDataModel, {}>({
+  key: {
+    type: String,
+    default: "Metadata",
+  },
   minPrice: {
     type: Number,
     required: true,
@@ -29,7 +34,7 @@ const orderSchema = new mongoose.Schema<MetaDataModel, {}>({
 });
 
 const MetaData =
-  mongoose.models.Rating || mongoose.model("meta-data", orderSchema);
+  mongoose.models.metadata || mongoose.model("metadata", orderSchema);
 
 export default MetaData as mongoose.Model<MetaDataModel, {}>;
 export type { MetaDataModel };

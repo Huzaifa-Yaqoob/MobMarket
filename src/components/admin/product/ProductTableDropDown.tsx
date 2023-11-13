@@ -1,6 +1,5 @@
 import { MoreHorizontal } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import EditStockModal from "./edit-stock/EditStockModal";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,6 +20,7 @@ export default function ProductTableDropDown() {
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuItem>Edit Product</DropdownMenuItem>
+        <DropdownMenuItem>Add Sale</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>View Details</DropdownMenuItem>
       </DropdownMenuContent>

@@ -1,8 +1,14 @@
 import mongoose, { Document } from "mongoose";
 
-interface Variant {
+export interface Variant {
   name: string;
   picture: string;
+}
+
+interface Sale {
+  salePrice: number;
+  saleStartDate: Date;
+  saleEndDate: Date;
 }
 
 interface ProductModel extends Document {
@@ -10,9 +16,8 @@ interface ProductModel extends Document {
   picture: string;
   price: number;
   brand: mongoose.Types.ObjectId;
-  sale: mongoose.Types.ObjectId;
-  salePercentage: number;
-  yearReleased: number;
+  sale?: Sale | null;
+  yearReleased: string;
   ram: number;
   storage: number;
   battery: number;
@@ -41,6 +46,16 @@ const VariantSchema = new mongoose.Schema<Variant, {}>({
   },
 });
 
+const SaleSchema = new mongoose.Schema<Sale, {}>({
+  salePrice: {
+    type: Number,
+  },
+  saleStartDate: { type: Date },
+  saleEndDate: {
+    type: Date,
+  },
+});
+
 const productSchema = new mongoose.Schema<ProductModel, {}>({
   name: {
     type: String,
@@ -57,11 +72,7 @@ const productSchema = new mongoose.Schema<ProductModel, {}>({
     validate: isZero,
   },
   sale: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "sale",
-  },
-  salePercentage: {
-    type: Number,
+    type: SaleSchema,
   },
   brand: {
     type: mongoose.Schema.Types.ObjectId,
@@ -69,7 +80,7 @@ const productSchema = new mongoose.Schema<ProductModel, {}>({
     required: true,
   },
   yearReleased: {
-    type: Number,
+    type: String,
     required: true,
   },
   ram: {

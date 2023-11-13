@@ -9,6 +9,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import FilterProducts from "../forms/FilterProducts";
+import useGetBrandForUser from "@/hooks/useGetBrandForUser";
 
 const colorOption: SelectItem[] = [
   { label: "black", value: "black", _id: "1" },

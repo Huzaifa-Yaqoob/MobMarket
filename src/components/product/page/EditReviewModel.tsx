@@ -7,7 +7,13 @@ import {
 } from "@/components/ui/dialog";
 import EditReviewForm from "./form/EditReviewForm";
 
-export default function EditReviewModel(): React.ReactElement {
+export default function EditReviewModel({
+  userRating,
+  productId,
+}: {
+  userRating: number;
+  productId: string;
+}): React.ReactElement {
   return (
     <Dialog>
       <DialogTrigger
@@ -21,7 +27,7 @@ export default function EditReviewModel(): React.ReactElement {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>Post Your Review</DialogHeader>
-        <EditReviewForm />
+        <EditReviewForm userRating={userRating} productId={productId} />
       </DialogContent>
     </Dialog>
   );

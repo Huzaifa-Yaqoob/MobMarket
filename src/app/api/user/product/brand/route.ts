@@ -13,7 +13,6 @@ export async function GET(request: NextRequest) {
         label: brand.name,
       };
     });
-    console.log(formattedBrands);
     return Response.json(formattedBrands);
   } catch (error) {
     console.log(error, "at getting brand for user");

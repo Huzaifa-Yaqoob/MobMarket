@@ -15,6 +15,7 @@ export interface ProductTable {
   stock: number;
   rating: number;
   purchases: number;
+  sale: boolean;
 }
 
 export const productColumns: ColumnDef<ProductTable>[] = [
@@ -73,6 +74,18 @@ export const productColumns: ColumnDef<ProductTable>[] = [
     cell: ({ row }) => {
       const purchases = row.getValue("purchases") as number;
       return <h3 className="text-lg">{purchases}</h3>;
+    },
+  },
+  {
+    accessorKey: "sale",
+    header: "Sale Status",
+    cell: ({ row }) => {
+      const saleStatus = row.getValue("sale") as number;
+      return saleStatus ? (
+        <h3 className="text-lg text-success">Active</h3>
+      ) : (
+        <h3 className="text-lg">Nill</h3>
+      );
     },
   },
   {

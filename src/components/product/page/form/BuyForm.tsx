@@ -20,11 +20,18 @@ import UserLocation from "./UserLocation";
 import useGeoNavigator from "@/hooks/useGeoNavigator";
 import MapToGoogleMap from "@/components/map/MapToGoogleMap";
 
-export default function BuyForm({ id }: { id: string }): React.ReactElement {
+export default function BuyForm({
+  id,
+  bill,
+}: {
+  id: string;
+  bill: number;
+}): React.ReactElement {
   const { isLoading, error, geoLocation } = useGeoNavigator();
   const form = useForm<z.infer<typeof orderFormSchema>>({
     resolver: zodResolver(orderFormSchema),
     defaultValues: {
+      bill: bill,
       username: "",
       phoneNumber: "",
       geoLocation: { lat: 0, lng: 0 },
@@ -34,7 +41,6 @@ export default function BuyForm({ id }: { id: string }): React.ReactElement {
   });
 
   useEffect(() => {
-    form.setValue("bill", 1000);
     if (!isLoading) {
       if (error === "") {
         form.setValue("geoLocation", geoLocation);

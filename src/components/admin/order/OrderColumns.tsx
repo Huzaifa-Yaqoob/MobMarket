@@ -2,6 +2,7 @@ import { ColumnDef } from "@tanstack/react-table";
 import { ArrowUpDown } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ImageContainer from "@/components/common/ImageContainer";
 
 export interface OrderTable {
   _id: string;

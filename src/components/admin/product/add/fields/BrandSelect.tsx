@@ -1,6 +1,10 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import * as z from "zod";
 import { addProductFormSchema } from "@/lib/zodSchemas";
 import Select from "react-select";
+import useGetBrandForUser from "@/hooks/useGetBrandsForUser";
 
 interface BrandSelectProps {
   field: {
@@ -10,18 +14,27 @@ interface BrandSelectProps {
   // option: SelectItem[];
 }
 
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+interface Option {
+  value: string;
+  label: string;
+}
 
 export default function BrandSelect({
   field,
 }: BrandSelectProps): React.ReactElement {
+  const { isLoading, error, getBrands } = useGetBrandForUser();
+  const [option, setOption] = useState<Option[]>([]);
+  useEffect(() => {
+    (async () => {
+      const data = await getBrands();
+      setOption(data);
+      console.log(data);
+    })();
+  }, []);
   return (
     <Select
-      options={options}
+      isLoading={isLoading}
+      options={option}
       {...field}
       placeholder="Select..."
       unstyled

@@ -5,42 +5,16 @@ import Image from "next/image";
 import { useOrderStore } from "@/lib/store";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-const images: { variantName: string; image: TImage }[] = [
-  {
-    variantName: "white",
-    image: {
-      url: "/products/Apple-iPhone-11-PNG-Image.png",
-      alt: "iPhone11",
-      name: "white",
-    },
-  },
-  {
-    variantName: "red",
-    image: {
-      url: "/products/Apple-iPhone-12-PNG-Transparent-HD-Photo.png",
-      alt: "iPhone11",
-      name: "white",
-    },
-  },
-  {
-    variantName: "white1",
-    image: {
-      url: "/products/Apple-iPhone-11-PNG-Image.png",
-      alt: "iPhone11",
-      name: "white",
-    },
-  },
-  {
-    variantName: "red1",
-    image: {
-      url: "/products/Apple-iPhone-12-PNG-Transparent-HD-Photo.png",
-      alt: "iPhone11",
-      name: "white",
-    },
-  },
-];
+interface ItemVariantProps {
+  variants: {
+    variantName: string;
+    image: TImage;
+  }[];
+}
 
-export default function ItemVariant(): React.ReactElement {
+export default function ItemVariant({
+  variants,
+}: ItemVariantProps): React.ReactElement {
   const [imageIndex, setImageIndex] = useState(0);
   const [updateImage, updateVariantName] = useOrderStore((state) => [
     state.updateImage,
@@ -48,11 +22,11 @@ export default function ItemVariant(): React.ReactElement {
   ]);
 
   useEffect(() => {
-    updateImage(images[imageIndex].image);
+    updateImage(variants[imageIndex].image);
     if (imageIndex === 0) {
       updateVariantName("Not Selected");
     } else {
-      updateVariantName(images[imageIndex].variantName);
+      updateVariantName(variants[imageIndex].variantName);
     }
   }, [imageIndex]);
 
@@ -61,9 +35,9 @@ export default function ItemVariant(): React.ReactElement {
       <div className="w-32">
         <AspectRatio ratio={4 / 4} className="border border-primary rounded">
           <Image
-            key={images[imageIndex].variantName}
-            src={images[imageIndex].image.url}
-            alt={images[imageIndex].image.alt}
+            key={variants[imageIndex].variantName}
+            src={variants[imageIndex].image.url}
+            alt={variants[imageIndex].image.alt}
             fill
             loading="lazy"
             sizes="5rem"
@@ -72,7 +46,7 @@ export default function ItemVariant(): React.ReactElement {
         </AspectRatio>
       </div>
       <div className="overflow-background space-x-2 flex flex-row items-center overflow-scroll max-w-[15rem] no-scrollbar">
-        {images.map((item, index) => {
+        {variants.map((item, index) => {
           if (index === 0) {
             return null;
           }

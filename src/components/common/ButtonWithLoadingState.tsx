@@ -14,12 +14,14 @@ interface ButtonWithLoadingStateProps {
   type?: "submit" | "button" | "reset" | undefined;
   text: string;
   isLoading: boolean;
+  wClass: string;
   onClick?: () => void;
 }
 
 export default function ButtonWithLoadingState({
   variant = "default",
   type = "submit",
+  wClass = "w-fit",
   text,
   isLoading,
   onClick,
@@ -30,10 +32,10 @@ export default function ButtonWithLoadingState({
       variant={variant}
       disabled={isLoading}
       onClick={onClick ? onClick : undefined}
+      className={wClass}
     >
       {isLoading ? (
         <>
-          {" "}
           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
           Please wait
         </>
