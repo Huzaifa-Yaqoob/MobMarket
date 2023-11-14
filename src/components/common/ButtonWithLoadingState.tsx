@@ -14,7 +14,7 @@ interface ButtonWithLoadingStateProps {
   type?: "submit" | "button" | "reset" | undefined;
   text: string;
   isLoading: boolean;
-  wClass: string;
+  wClass?: string;
   onClick?: () => void;
 }
 

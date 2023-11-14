@@ -53,7 +53,6 @@ export default function ItemBox({
     });
   }
 
-  console.log(variants);
   return (
     <section className="mt-4 flex flex-col md:flex-row justify-between gap-4">
       <div className="flex flex-col md:flex-row gap-4">

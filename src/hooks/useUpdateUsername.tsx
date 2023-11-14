@@ -4,10 +4,6 @@ import * as z from "zod";
 import { editUsernameFormSchema } from "@/lib/zodSchemas";
 import { userInstance } from "@/axios/instances";
 
-interface UpdateUserNameResponse {
-  usernames: string;
-}
-
 export default function useUpdateUsername() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<any | AxiosError>("");

@@ -1,22 +1,32 @@
+import { getServerSession } from "next-auth";
 import { Star } from "lucide-react";
+import { authOption } from "@/app/api/auth/[...nextauth]/route";
 import { Separator } from "@/components/ui/separator";
 import EditReviewModel from "./EditReviewModel";
 import { Product as ProductType } from "@/database/aggregations/productPage";
 
-export default function ItemRating({
+export default async function ItemRating({
   product,
   userRating,
 }: {
   product: ProductType | undefined;
   userRating: number;
-}): React.ReactElement {
+}): Promise<React.ReactElement> {
+  const session = await getServerSession(authOption);
   return (
     <div className="text-xs flex flex-col gap-2">
-      <UsersReview
-        rating={userRating}
-        productId={product ? product._id.toString() : ""}
-      />
-      <Separator />
+      {session ? (
+        <>
+          <UsersReview
+            rating={userRating}
+            productId={product ? product._id.toString() : ""}
+          />
+          <Separator />
+        </>
+      ) : (
+        ""
+      )}
+
       <div className="flex gap-1">
         <div className="flex items-center">
           <Star className="mr-2 h-4 w-4 text-royal fill-royal" />

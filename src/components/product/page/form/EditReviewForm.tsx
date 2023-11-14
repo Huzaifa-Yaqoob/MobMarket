@@ -1,6 +1,5 @@
 "use client";
 
-import { use, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useForm } from "react-hook-form";
@@ -8,14 +7,15 @@ import { editReviewFormSchema } from "@/lib/zodSchemas";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import RatingField from "./edit_review_field/RatingField";
+import ButtonWithLoadingState from "@/components/common/ButtonWithLoadingState";
+import Error from "@/components/common/Error";
+import useEditReview from "@/hooks/useEditReview";
 
 export default function EditReviewForm({
   userRating,
@@ -24,21 +24,20 @@ export default function EditReviewForm({
   userRating: number;
   productId: string;
 }): React.ReactElement {
+  const { isLoading, error, editReview, deleteReview } = useEditReview();
   const form = useForm<z.infer<typeof editReviewFormSchema>>({
     resolver: zodResolver(editReviewFormSchema),
     defaultValues: {
       rating: userRating,
+      productId: productId,
     },
   });
   console.log(userRating, productId);
 
-  function onSubmit(values: z.infer<typeof editReviewFormSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  async function onSubmit(values: z.infer<typeof editReviewFormSchema>) {
+    await editReview(values);
     console.log(values);
   }
-
-  // form.setValue("rating", rating)
 
   return (
     <Form {...form}>
@@ -58,9 +57,14 @@ export default function EditReviewForm({
             </FormItem>
           )}
         />
+        <Error msg={error} />
         <div className="flex gap-4">
-          <Button type="submit">Post</Button>
-          <Button type="button" variant={"outline"}>
+          <ButtonWithLoadingState text="Submit" isLoading={isLoading} />
+          <Button
+            type="button"
+            variant={"outline"}
+            onClick={async () => await deleteReview(productId)}
+          >
             Remove
           </Button>
         </div>

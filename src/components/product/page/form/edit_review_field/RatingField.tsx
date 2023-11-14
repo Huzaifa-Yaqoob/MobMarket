@@ -9,7 +9,7 @@ interface RatingFieldProps {
     name: string;
     value: z.infer<typeof editReviewFormSchema>["rating"];
   };
-  setValue: UseFormSetValue<{ rating: number }>;
+  setValue: UseFormSetValue<{ rating: number; productId: string }>;
 }
 
 export default function RatingField({
